@@ -4,11 +4,7 @@ import { Button, View, Text } from 'react-native';
 export default ({ navigation }) => {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Listar turmas do usuário</Text>
-            <Button
-                title="Turma A"
-                onPress={() => navigation.navigate('Mural')}
-            />
+            <Text>Formulário de criação da nova turma</Text>
         </View>
     );
 }
