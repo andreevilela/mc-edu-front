@@ -55,6 +55,7 @@ export default props => {
             <SettingsStack.Screen name="Nova Postagem" component={NovaPostagem} />
           </SettingsStack.Navigator>
         )}
+        
       </Tab.Screen>
       <Tab.Screen name="Conta">
         {() => (
