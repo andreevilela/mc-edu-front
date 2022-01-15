@@ -17,7 +17,14 @@ const HomeStack = createNativeStackNavigator();
 export default props => {
   return (
     <Tab.Navigator screenOptions={{ headerShown: false }}>
-      <Tab.Screen name="Início">
+      <Tab.Screen
+        name="Início"
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="school" color={color} size={size} />
+          ),
+        }}
+      >
         {() => (
           <SettingsStack.Navigator>
             <SettingsStack.Screen
@@ -55,9 +62,15 @@ export default props => {
             <SettingsStack.Screen name="Nova Postagem" component={NovaPostagem} />
           </SettingsStack.Navigator>
         )}
-        
+
       </Tab.Screen>
-      <Tab.Screen name="Conta">
+      <Tab.Screen name="Conta"
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="person" color={color} size={size} />
+          ),
+        }}
+      >
         {() => (
           <HomeStack.Navigator>
             <HomeStack.Screen name="Perfil" component={Perfil} />
