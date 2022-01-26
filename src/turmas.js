@@ -8,7 +8,7 @@ export default props => {
     function getTurmaItem({ item }) {
         return (
             <ListItem bottomDivider onPress={() => props.navigation.navigate('Mural')}>
-                <Avatar source={{ uri: item.avatarUrl }} />
+                <Avatar source={{ uri: item.avatarUrl }} size={'medium'} />
                 <ListItem.Content>
                     <ListItem.Title>{item.name}</ListItem.Title>
                     <ListItem.Subtitle>{'Prof. ' + item.professor}</ListItem.Subtitle>

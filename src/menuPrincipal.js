@@ -9,6 +9,7 @@ import DetalhesPostagem from './detalhesPostagem';
 import Perfil from './perfil';
 import NovaTurma from './novaTurma';
 import NovaPostagem from './novaPostagem';
+import Entrar from './Auth'
 
 const Tab = createBottomTabNavigator();
 const SettingsStack = createNativeStackNavigator();
@@ -27,6 +28,7 @@ export default props => {
       >
         {() => (
           <SettingsStack.Navigator>
+            <SettingsStack.Screen name="Entrar" component={Entrar} />
             <SettingsStack.Screen
               name="Turmas"
               component={Turmas}
