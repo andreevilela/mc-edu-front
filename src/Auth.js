@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import axios from "axios";
 import { View, StyleSheet, ToastAndroid, Button, Text, Image } from "react-native";
 import {
     GoogleSignin,
     GoogleSigninButton,
     statusCodes,
 } from '@react-native-community/google-signin';
+import * as api from "./services/Endpoints"
 
 
 GoogleSignin.configure({
@@ -31,9 +31,9 @@ export default class Auth extends Component {
             })
             //console.log(this.state.userGoogleInfo);
 
-            console.log("SET_TOKEN");
+            //console.log("SET_TOKEN");
             //console.log(this.state.userGoogleInfo.idToken);
-            axios.defaults.headers.common['Authorization'] = `bearer ${this.state.userGoogleInfo.idToken}`
+            //axios.defaults.headers.common['Authorization'] = `bearer ${this.state.userGoogleInfo.idToken}`
 
             console.log("CALLING_REGISTRED");
             this.registered()
@@ -57,12 +57,15 @@ export default class Auth extends Component {
     registered = async () => {
         try {
             console.log("START_REGISTRED");
-            console.log("CONSUMING_API");
-            const existEmail = await axios.get(`http://192.168.100.103:8080/alunos/email/${this.state.userGoogleInfo.user.email}`)
-            //const existEmail = (email) => { api.existsByEmail(this.state.userGoogleInfo.user.email).then() }
-            console.log("RETURN_API -> " + existEmail.data);
-            console.log("SIGN_IN_OR_SIGN_UP");
-            existEmail.data ? this.props.navigation.navigate('Turmas') : this.signup()
+            console.log("CONSUMING_API_GET");
+            const userBanco = await api.get(this.state.userGoogleInfo.user.email).catch((error) => {
+                console.log({ ...error })
+                console.log("CALLING_SIGN_UP");
+                this.signup()
+            });
+            if (userBanco !== undefined) console.log("RETURN_API_GET -> " + userBanco.data.id);
+            console.log("SIGN_IN_SUCCESS");
+            this.props.navigation.navigate('Turmas')
             console.log("END_REGISTRED");
         } catch (e) {
             console.log("ERROR_REGISTRED");
@@ -70,15 +73,20 @@ export default class Auth extends Component {
         }
     };
 
+
     signup = async () => {
+        var data = {
+            nome: this.state.userGoogleInfo.user.name,
+            email: this.state.userGoogleInfo.user.email,
+            foto: this.state.userGoogleInfo.user.photo
+        }
         try {
             console.log("START_SIGN_UP");
-            console.log("CONSUMING_API");
-            await axios.post(`http://192.168.100.103:8080/alunos`, {
-                nome: this.state.userGoogleInfo.user.name,
-                email: this.state.userGoogleInfo.user.email,
-                foto: this.state.userGoogleInfo.user.photo
+            console.log("CONSUMING_API_POST");
+            const signUp = await api.create(data).catch((error) => {
+                console.log({ ...error })
             });
+            console.log("RETURN_API_POST -> " + signUp.data.id);
             this.props.navigation.navigate('Turmas');
             console.log("END_SIGN_UP");
         } catch (e) {
@@ -86,6 +94,7 @@ export default class Auth extends Component {
             showError(e)
         }
     };
+
 
     render() {
         return (
