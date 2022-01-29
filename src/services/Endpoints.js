@@ -8,10 +8,10 @@ const httpClient = axios.create({
   })
   
 
-  export const create = data => {
-    return httpClient.post("/alunos", data);
+  export const createUser = data => {
+    return httpClient.post("/usuarios", data);
   };
 
   export const get = email => {
-    return httpClient.get(`/alunos/email/${email}`);
+    return httpClient.get(`/usuarios/email/${email}`);
   };

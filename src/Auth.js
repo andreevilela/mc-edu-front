@@ -36,7 +36,7 @@ export default class Auth extends Component {
             //axios.defaults.headers.common['Authorization'] = `bearer ${this.state.userGoogleInfo.idToken}`
 
             console.log("CALLING_REGISTRED");
-            this.registered()
+            this.signup()
             console.log("END_SIGN_IN");
 
         } catch (error) {
@@ -54,7 +54,7 @@ export default class Auth extends Component {
     };
 
 
-    registered = async () => {
+    /*registered = async () => {
         try {
             console.log("START_REGISTRED");
             console.log("CONSUMING_API_GET");
@@ -71,19 +71,20 @@ export default class Auth extends Component {
             console.log("ERROR_REGISTRED");
             showError(e)
         }
-    };
+    };*/
 
 
     signup = async () => {
         var data = {
+            id: this.state.userGoogleInfo.user.id,
             nome: this.state.userGoogleInfo.user.name,
             email: this.state.userGoogleInfo.user.email,
             foto: this.state.userGoogleInfo.user.photo
         }
         try {
             console.log("START_SIGN_UP");
-            console.log("CONSUMING_API_POST");
-            const signUp = await api.create(data).catch((error) => {
+            console.log("CONSUMING_API_CREATE_USER");
+            const signUp = await api.createUser(data).catch((error) => {
                 console.log({ ...error })
             });
             console.log("RETURN_API_POST -> " + signUp.data.id);
