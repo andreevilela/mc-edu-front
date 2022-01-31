@@ -5,6 +5,7 @@ import {
     GoogleSigninButton,
     statusCodes,
 } from '@react-native-community/google-signin';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as api from "./services/Endpoints"
 
 
@@ -35,8 +36,13 @@ export default class Auth extends Component {
             //console.log(this.state.userGoogleInfo.idToken);
             //axios.defaults.headers.common['Authorization'] = `bearer ${this.state.userGoogleInfo.idToken}`
 
-            console.log("CALLING_REGISTRED");
-            this.signup()
+            //await AsyncStorage.setItem("id", this.state.userGoogleInfo.idToken);
+            //console.log(await AsyncStorage.getItem("id"));
+            //this.setItem(this.state.userGoogleInfo.user.id);
+            //console.log(this.getItem("id"));
+
+            console.log("CALLING_SIGN_UP");
+            this.signUp()
             console.log("END_SIGN_IN");
 
         } catch (error) {
@@ -74,7 +80,7 @@ export default class Auth extends Component {
     };*/
 
 
-    signup = async () => {
+    signUp = async () => {
         var data = {
             id: this.state.userGoogleInfo.user.id,
             nome: this.state.userGoogleInfo.user.name,
@@ -96,11 +102,31 @@ export default class Auth extends Component {
         }
     };
 
+    setItem = async (id) => {
+        try {
+            await AsyncStorage.setItem("id", id);
+        } catch (e) {
+            console.log("ERROR_SET_ITEM");
+            showError(e)
+        }
+    };
+
+
+    getItem = async (id) => {
+        try {
+            await AsyncStorage.getItem(id)
+            console.log("GET_ITEM -> " + await AsyncStorage.getItem(id))
+        } catch (e) {
+            console.log("ERROR_GET_ITEM");
+            showError(e)
+        }
+    };
+
 
     render() {
         return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Image source={{ uri: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png' }}
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgb(55,55,55)' }}>
+                <Image source={{ uri: 'https://scontent.fudi1-2.fna.fbcdn.net/v/t39.30808-6/250239509_1752436571619075_2148674778121119723_n.png?_nc_cat=100&ccb=1-5&_nc_sid=174925&_nc_ohc=kD-ijzghxN4AX9s-HDw&_nc_ht=scontent.fudi1-2.fna&oh=00_AT9PCED4h8zkZjUuqOz3w0WCngcAR8jFVBRD9eKGNNQu_w&oe=61FCD934' }}
                     style={{ width: 200, height: 200, marginBottom: 100 }}
                 />
                 <GoogleSigninButton

@@ -12,6 +12,6 @@ const httpClient = axios.create({
     return httpClient.post("/usuarios", data);
   };
 
-  export const get = email => {
-    return httpClient.get(`/usuarios/email/${email}`);
+  export const getTurmasAluno = id => {
+    return httpClient.get(`/turmas/aluno/${id}`);
   };
