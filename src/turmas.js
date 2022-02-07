@@ -20,7 +20,7 @@ export default props => {
                 const turmas = await api.getTurmasAluno(id).catch((error) => {
                     console.log({ ...error })
                 });
-                console.log(turmas.data)
+                //console.log(turmas.data)
                 setTurmas(turmas.data)
                 setLoaded(true)
             } catch (e) {
@@ -36,7 +36,7 @@ export default props => {
     function getTurmaItem({ item }) {
         return (
             <ListItem bottomDivider onPress={() => props.navigation.navigate('Mural')}>
-                <Avatar source={{ uri: 'https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png' }} size={'medium'} />
+                <Avatar rounded source={{ uri: item.professores.map(x => x.foto).toString() }} size={'medium'} />
                 <ListItem.Content>
                     <ListItem.Title>{item.nome}</ListItem.Title>
                     <ListItem.Subtitle>{'Prof. ' + item.professores.map(x => x.nome)}</ListItem.Subtitle>
@@ -54,7 +54,7 @@ export default props => {
                     data={turmas}
                     renderItem={getTurmaItem}
                 />
-                : console.log("Carregando")
+                : console.log("Carregando_Turmas")
             }
         </View>
 

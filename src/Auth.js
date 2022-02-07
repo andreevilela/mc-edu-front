@@ -38,7 +38,7 @@ export default class Auth extends Component {
 
             //await AsyncStorage.setItem("id", this.state.userGoogleInfo.idToken);
             //console.log(await AsyncStorage.getItem("id"));
-            //this.setItem(this.state.userGoogleInfo.user.id);
+            this.setItem(this.state.userGoogleInfo.user.id);
             //console.log(this.getItem("id"));
 
             console.log("CALLING_SIGN_UP");
