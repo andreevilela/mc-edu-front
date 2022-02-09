@@ -8,6 +8,7 @@ import Mural from './mural';
 import DetalhesPostagem from './detalhesPostagem';
 import Perfil from './perfil';
 import NovaTurma from './novaTurma';
+import Inscricao from './inscricao';
 import NovaPostagem from './novaPostagem';
 import Entrar from './Auth'
 
@@ -34,9 +35,16 @@ export default props => {
               component={Turmas}
               options={({ navigation }) => {
                 return {
-                  headerRight: () => (
+                  headerLeft: () => (
                     <Button
                       onPress={() => navigation.navigate('Nova Turma')}
+                      type="clear"
+                      icon={<Icon name="add-circle" size={40} color="black" />}
+                    />
+                  ),
+                  headerRight: () => (
+                    <Button
+                      onPress={() => navigation.navigate('Inscrição Turma')}
                       type="clear"
                       icon={<Icon name="add-circle" size={40} color="gray" />}
                     />
@@ -61,6 +69,7 @@ export default props => {
             />
             <SettingsStack.Screen name="Detalhes" component={DetalhesPostagem} />
             <SettingsStack.Screen name="Nova Turma" component={NovaTurma} />
+            <SettingsStack.Screen name="Inscrição Turma" component={Inscricao} />
             <SettingsStack.Screen name="Nova Postagem" component={NovaPostagem} />
           </SettingsStack.Navigator>
         )}
