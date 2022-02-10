@@ -37,9 +37,10 @@ export default class Auth extends Component {
             //axios.defaults.headers.common['Authorization'] = `bearer ${this.state.userGoogleInfo.idToken}`
 
             //await AsyncStorage.setItem("id", this.state.userGoogleInfo.idToken);
+            await AsyncStorage.setItem("id", this.state.userGoogleInfo.user.id);
+            await AsyncStorage.setItem("email", this.state.userGoogleInfo.user.email);
             //console.log(await AsyncStorage.getItem("id"));
-            this.setItem(this.state.userGoogleInfo.user.id);
-            //console.log(this.getItem("id"));
+            //console.log(await AsyncStorage.getItem("email"));
 
             console.log("CALLING_SIGN_UP");
             this.signUp()
@@ -98,26 +99,6 @@ export default class Auth extends Component {
             console.log("END_SIGN_UP");
         } catch (e) {
             console.log("ERROR_SIGN_UP");
-            showError(e)
-        }
-    };
-
-    setItem = async (id) => {
-        try {
-            await AsyncStorage.setItem("id", id);
-        } catch (e) {
-            console.log("ERROR_SET_ITEM");
-            showError(e)
-        }
-    };
-
-
-    getItem = async (id) => {
-        try {
-            await AsyncStorage.getItem(id)
-            console.log("GET_ITEM -> " + await AsyncStorage.getItem(id))
-        } catch (e) {
-            console.log("ERROR_GET_ITEM");
             showError(e)
         }
     };

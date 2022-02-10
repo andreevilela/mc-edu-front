@@ -15,3 +15,7 @@ const httpClient = axios.create({
   export const getTurmasAluno = id => {
     return httpClient.get(`/turmas/aluno/${id}`);
   };
+
+  export const getPostagensTurma = id => {
+    return httpClient.get(`/postagens/turma/${id}`);
+  };
