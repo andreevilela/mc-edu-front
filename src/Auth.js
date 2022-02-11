@@ -6,11 +6,11 @@ import {
     statusCodes,
 } from '@react-native-community/google-signin';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as api from "./services/Endpoints"
+import * as api from './services/Endpoints'
 
 
 GoogleSignin.configure({
-    webClientId: '403824723231-81fko73qi2ambcvu4coruuk0gtt1nu0a.apps.googleusercontent.com',
+    webClientId: "403824723231-81fko73qi2ambcvu4coruuk0gtt1nu0a.apps.googleusercontent.com",
     offlineAccess: true, // if you want to access Google API on behalf 
 });
 
@@ -61,26 +61,6 @@ export default class Auth extends Component {
     };
 
 
-    /*registered = async () => {
-        try {
-            console.log("START_REGISTRED");
-            console.log("CONSUMING_API_GET");
-            const userBanco = await api.get(this.state.userGoogleInfo.user.email).catch((error) => {
-                console.log({ ...error })
-                console.log("CALLING_SIGN_UP");
-                this.signup()
-            });
-            if (userBanco !== undefined) console.log("RETURN_API_GET -> " + userBanco.data.id);
-            console.log("SIGN_IN_SUCCESS");
-            this.props.navigation.navigate('Turmas')
-            console.log("END_REGISTRED");
-        } catch (e) {
-            console.log("ERROR_REGISTRED");
-            showError(e)
-        }
-    };*/
-
-
     signUp = async () => {
         var data = {
             id: this.state.userGoogleInfo.user.id,
@@ -94,7 +74,7 @@ export default class Auth extends Component {
             const signUp = await api.createUser(data).catch((error) => {
                 console.log({ ...error })
             });
-            console.log("RETURN_API_POST -> " + signUp.data.id);
+            //console.log("RETURN_API_POST -> " + signUp.data.id);
             this.props.navigation.navigate('Turmas');
             console.log("END_SIGN_UP");
         } catch (e) {
@@ -106,8 +86,8 @@ export default class Auth extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgb(55,55,55)' }}>
-                <Image source={{ uri: 'https://firebasestorage.googleapis.com/v0/b/mc-edu-bb190.appspot.com/o/logo%202%20mc.png?alt=media&token=d0d186e2-d8d3-432e-b74b-59d7f32b7c73' }}
+            <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: "rgb(55,55,55)" }}>
+                <Image source={{ uri: "https://firebasestorage.googleapis.com/v0/b/mc-edu-bb190.appspot.com/o/logo%202%20mc.png?alt=media&token=d0d186e2-d8d3-432e-b74b-59d7f32b7c73" }}
                     style={{ width: 200, height: 200, marginBottom: 100 }}
                 />
                 <GoogleSigninButton

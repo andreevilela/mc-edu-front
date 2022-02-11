@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, View, Text, FlatList } from 'react-native';
 import { ListItem, Avatar } from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as api from "./services/Endpoints"
+import * as api from './services/Endpoints'
 
 export default props => {
     const [email, setEmail] = useState([null]);
@@ -17,7 +17,7 @@ export default props => {
         const id = await AsyncStorage.getItem("id");
         const email = await AsyncStorage.getItem("email");
         setEmail(email)
-        console.log("Id -> " + id)
+        //console.log("Id -> " + id)
         if (id) {
             try {
                 const turmas = await api.getTurmasAluno(id).catch((error) => {
@@ -31,22 +31,22 @@ export default props => {
                 showError(e)
             }
         } else {
-            props.navigation.navigate('Entrar');
+            props.navigation.navigate("Entrar");
         }
     };
 
 
     function getTurmaItem({ item }) {
         return (
-            <ListItem bottomDivider onPress={() => props.navigation.navigate('Mural', item)}>
-                <Avatar rounded source={{ uri: item.professores.map(it => it.foto).toString() }} size={'medium'} />
+            <ListItem bottomDivider onPress={() => props.navigation.navigate("Mural", item)}>
+                <Avatar rounded source={{ uri: item.professores.map(it => it.foto).toString() }} size={"medium"} />
                 <ListItem.Content>
                     <ListItem.Title>{item.nome}</ListItem.Title>
                     <ListItem.Subtitle>
-                        { 
-                            email.includes("estudante") ? 
-                                'Prof. ' + item.professores.map(it => it.nome) : 
-                                'Código: ' + item.codigo 
+                        {
+                            email.includes("estudante") ?
+                                "Prof. " + item.professores.map(it => it.nome) :
+                                "Código: " + item.codigo
                         }
                     </ListItem.Subtitle>
                 </ListItem.Content>

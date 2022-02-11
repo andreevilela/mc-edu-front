@@ -37,14 +37,14 @@ export default props => {
                 return {
                   headerLeft: () => (
                     <Button
-                      onPress={() => navigation.navigate('Nova Turma')}
+                      onPress={() => navigation.navigate("Nova Turma")}
                       type="clear"
                       icon={<Icon name="add-circle" size={40} color="black" />}
                     />
                   ),
                   headerRight: () => (
                     <Button
-                      onPress={() => navigation.navigate('Inscrição Turma')}
+                      onPress={() => navigation.navigate("Inscrição Turma")}
                       type="clear"
                       icon={<Icon name="add-circle" size={40} color="gray" />}
                     />
@@ -59,7 +59,7 @@ export default props => {
                 return {
                   headerRight: () => (
                     <Button
-                      onPress={() => navigation.navigate('Nova Postagem')}
+                      onPress={() => navigation.navigate("Nova Postagem")}
                       type="clear"
                       icon={<Icon name="add-circle" size={40} color="gray" />}
                     />
