@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "403824723231",
+    "project_id": "mc-edu-bb190",
+    "storage_bucket": "mc-edu-bb190.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:403824723231:android:e5010ae55455f467c1dc2a",
+        "android_client_info": {
+          "package_name": "com.mcedu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "403824723231-p64usv6t4jnu9g7rf20frkok8oqnbnms.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mcedu",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "403824723231-81fko73qi2ambcvu4coruuk0gtt1nu0a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARRs8wjKqJXCy3fQPfyRpxwLfaql5Y-4U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "403824723231-81fko73qi2ambcvu4coruuk0gtt1nu0a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
