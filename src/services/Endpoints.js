@@ -23,3 +23,7 @@ export const getPostagensTurma = id => {
 export const getDetalhesPostagem = id => {
   return httpClient.get(`/postagens/${id}`);
 };
+
+export const getUsuario = id => {
+  return httpClient.get(`/usuarios/${id}`);
+};
