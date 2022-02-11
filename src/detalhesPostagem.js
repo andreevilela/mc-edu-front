@@ -4,10 +4,8 @@ import * as api from './services/Endpoints'
 
 export default props => {
     const [postagem, setPostagem] = useState(props.route.params ? props.route.params : {})
-    console.log(postagem.id)
-
+    //console.log(postagem.id)
     const [detalhes, setDetalhes] = useState([null]);
-    const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
         getDetalhesPostagem();
@@ -18,11 +16,10 @@ export default props => {
             const detalhes = await api.getDetalhesPostagem(postagem.id).catch((error) => {
                 console.log({ ...error })
             });
-            console.log(detalhes.data)
+            //console.log(detalhes.data)
             setDetalhes(detalhes.data)
-            setLoaded(true)
         } catch (e) {
-            console.log("ERROR_GET_POSTAGENS");
+            console.log("ERROR_GET_DETALHES_POSTAGEM");
             showError(e)
         }
     };
