@@ -27,3 +27,7 @@ export const getDetalhesPostagem = id => {
 export const getUsuario = id => {
   return httpClient.get(`/usuarios/${id}`);
 };
+
+export const createTurma = data => {
+  return httpClient.post("/turmas", data);
+};
