@@ -12,8 +12,8 @@ export const createUser = data => {
   return httpClient.post("/usuarios", data);
 };
 
-export const getTurmasAluno = id => {
-  return httpClient.get(`/turmas/aluno/${id}`);
+export const getTurmasUsuario = id => {
+  return httpClient.get(`/turmas/usuario/${id}`);
 };
 
 export const getPostagensTurma = id => {

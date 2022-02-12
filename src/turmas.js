@@ -20,7 +20,7 @@ export default props => {
         //console.log("Id -> " + id)
         if (id) {
             try {
-                const turmas = await api.getTurmasAluno(id).catch((error) => {
+                const turmas = await api.getTurmasUsuario(id).catch((error) => {
                     console.log({ ...error })
                 });
                 //console.log(turmas.data)
