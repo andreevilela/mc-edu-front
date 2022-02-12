@@ -35,3 +35,7 @@ export const createNewTurma = data => {
 export const joinTurma = data => {
   return httpClient.post("/turmas/inscricao", data);
 };
+
+export const createPost = data => {
+  return httpClient.post("/postagens", data);
+};

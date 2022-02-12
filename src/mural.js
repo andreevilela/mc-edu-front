@@ -28,7 +28,6 @@ export default props => {
     }
   };
 
-
   function getPostagensItem({ item }) {
     return (
       <ListItem bottomDivider onPress={() => props.navigation.navigate('Detalhes', item)}>
