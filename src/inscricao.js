@@ -33,23 +33,29 @@ export default class inscricao extends React.Component {
 
     render() {
         return (
-            <View style={{ flex: 1, padding: 15, alignItems: "center" }}>
+            <View>
+                <View style={{ padding: 20 }}>
+                    <Text h4>Inscrição em Nova Turma</Text>
+                    <Text label>Digite o código da turma em que deseja entrar:</Text>
+                    <Input
+                        style={{ fontSize: 16 }}
+                        onChangeText={value => {
+                            this.setState({ setCodigoTurma: value });
+                        }}
+                        placeholder="Código da Turma"
+                    />
+                </View>
 
-                <Text h3>Inscrição em Nova Turma</Text>
-                <Text label>Digite o código da turma em que deseja entrar:</Text>
-
-                <Input
-                    onChangeText={value => {
-                        this.setState({ setCodigoTurma: value });
+                <View style={{ paddingHorizontal: 40, paddingHorizontal: 20 }}>
+                    <Button style={{
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        borderRadius: 10,
                     }}
-                    placeholder="Código da Turma"
-                />
-
-                <Button
-                    title="Entrar"
-                    onPress={() => this.entrarTurma()}
-                />
-
+                        title="Entrar"
+                        onPress={() => this.entrarTurma()}
+                    />
+                </View>
             </View>
 
         );
