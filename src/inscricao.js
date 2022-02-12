@@ -23,7 +23,7 @@ export default class inscricao extends React.Component {
                 console.log({ ...error })
             });
             // console.log("RETURN_API_POST -> " + createTurma.data.id);
-            this.props.navigation.navigate('Turmas');
+            this.props.navigation.push('Turmas'); // Push navega para o estado atualizado da página
             console.log("END_JOIN_TURMA");
         } catch (e) {
             console.log("ERROR_JOIN_TURMA");
