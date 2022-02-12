@@ -35,7 +35,6 @@ export default props => {
         }
     };
 
-
     function getTurmaItem({ item }) {
         return (
             <ListItem bottomDivider onPress={() => props.navigation.navigate("Mural", item)}>

@@ -23,7 +23,7 @@ export default class novaTurma extends React.Component {
                 console.log({ ...error })
             });
             console.log("RETURN_API_POST -> " + createTurma.data.id);
-            this.props.navigation.navigate('Turmas');
+            this.props.navigation.push('Turmas'); // Push navega para o estado atualizado da página
             console.log("END_CREATE_TURMA");
         } catch (e) {
             console.log("ERROR_CREATE_TURMA");
@@ -33,23 +33,31 @@ export default class novaTurma extends React.Component {
 
     render() {
         return (
-            <View style={{ flex: 1, padding: 15, alignItems: "center" }}>
+            <View>
 
-                <Text h3>Nova Turma</Text>
-                <Text label>Digite o nome da turma a ser criada:</Text>
+                <View style={{ padding: 20 }}>
+                    <Text h4>Nova Turma</Text>
+                    <Text label>Digite o nome da turma a ser criada:</Text>
 
-                <Input
-                    onChangeText={value => {
-                        this.setState({ setNomeTurma: value });
+                    <Input
+                        style={{ fontSize: 16 }}
+                        onChangeText={value => {
+                            this.setState({ setNomeTurma: value });
+                        }}
+                        placeholder="Nome da Turma"
+                    />
+                </View>
+
+                <View style={{ paddingHorizontal: 40, paddingHorizontal: 20 }}>
+                    <Button style={{
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        borderRadius: 10,
                     }}
-                    placeholder="Nome da Turma"
-                />
-
-                <Button
-                    title="Criar"
-                    style={{ padding: 32, alignItems: "center" }}
-                    onPress={this.criarTurma}
-                />
+                        title="Criar"
+                        onPress={() => this.criarTurma()}
+                    />
+                </View>
 
             </View>
 

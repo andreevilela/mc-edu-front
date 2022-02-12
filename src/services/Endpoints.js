@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const httpClient = axios.create({
-  baseURL: "http://192.168.100.103:8080",
+  baseURL: "http://192.168.56.1:8080",
   headers: {
     "Content-type": "application/json"
   }
@@ -34,4 +34,8 @@ export const createNewTurma = data => {
 
 export const joinTurma = data => {
   return httpClient.post("/turmas/inscricao", data);
+};
+
+export const createPost = data => {
+  return httpClient.post("/postagens", data);
 };
