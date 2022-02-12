@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { Text, Input, Button } from 'react-native-elements';
-import DatePicker from 'react-native-date-picker';
 
 export default class novaPostagem extends React.Component {
 

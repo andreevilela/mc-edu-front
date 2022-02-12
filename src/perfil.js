@@ -28,15 +28,15 @@ export default props => {
 
     return (
         <View style={{ flex: 1, padding: 15, alignItems: "center" }}>
-            <Avatar
-                rounded
-                source={{ uri: "" + usuario.foto + "" }}
-                size={"large"}
+            <Avatar 
+                rounded 
+                source={{ uri: "" + usuario.foto + "" }} 
+                size={"large"} 
             />
             <Text style={{ marginTop: 15, fontSize: 22, fontWeight: "bold" }}>
-                {usuario.nome}
+                { usuario.nome }
             </Text>
-            <Text >{usuario.email}</Text>
+            <Text >{ usuario.email }</Text>
         </View>
     );
 }
