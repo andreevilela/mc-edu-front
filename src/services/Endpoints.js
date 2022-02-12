@@ -28,6 +28,10 @@ export const getUsuario = id => {
   return httpClient.get(`/usuarios/${id}`);
 };
 
-export const createTurma = data => {
+export const createNewTurma = data => {
   return httpClient.post("/turmas", data);
+};
+
+export const joinTurma = data => {
+  return httpClient.post("/turmas/inscricao", data);
 };
