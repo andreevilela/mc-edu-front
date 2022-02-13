@@ -48,6 +48,7 @@ export default props => {
               component={Turmas}
               options={({ navigation }) => {
                 return {
+                  headerBackVisible: false,
                   headerRight: () => (
                     <Button
                       onPress={() => email.includes("estudante") ? 
