@@ -1,15 +1,15 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import { View } from 'react-native';
 import { Text, Input, Button } from 'react-native-elements';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as api from './services/Endpoints'
 
-export default class novaPostagem extends React.Component {
+export default class novaPostagem extends Component {
     state = {
-        setTituloPostagem: {},
-        setDataEntrega: {},
-        setDescPostagem: {},
+        setTituloPostagem: null,
+        setDataEntrega: null,
+        setDescPostagem: null,
     }
 
     // Realiza uma nova postagem na turma passando o ID da turma que está aberta e o ID do usuário(professor) logado
@@ -33,7 +33,7 @@ export default class novaPostagem extends React.Component {
                 console.log({ ...error })
             });
             // console.log("RETURN_API_POST -> " + createPost.data.id);
-            this.props.navigation.push('Mural'); // Push navega para o estado atualizado da página
+            this.props.navigation.push('Mural', data.turma); // Push navega para o estado atualizado da página
             console.log("END_CREATE_POST");
         } catch (e) {
             console.log("ERROR_CREATE_POST");
@@ -44,35 +44,34 @@ export default class novaPostagem extends React.Component {
     render() {
         return (
             <View>
-                <View style={{ padding: 20 }}>
-                    <Text h4>Nova Postagem</Text>
-                    <Text label>Título da Postagem:</Text>
+                <View style={{ padding: 15 }}>
+                    <Text label style={{ padding: 5 }}>Título da Postagem:</Text>
                     <Input
                         placeholder="Título da Postagem"
-                        style={{ fontSize: 16 }}
+                        style={{ fontSize: 16, padding: 5 }}
                         onChangeText={value => {
                             this.setState({ setTituloPostagem: value });
                         }}
                     />
-                    <Text label>Data de Entrega:</Text>
+                    <Text label style={{ padding: 5 }}>Data de Entrega:</Text>
                     <Input
                         placeholder="Data de Entrega"
-                        style={{ fontSize: 16 }}
+                        style={{ fontSize: 16, padding: 5 }}
                         onChangeText={value => {
                             this.setState({ setDataEntrega: value });
                         }}
                     />
-                    <Text label>Descrição:</Text>
+                    <Text label style={{ padding: 5 }}>Descrição:</Text>
                     <Input
                         placeholder="Descrição da Postagem"
-                        style={{ fontSize: 16 }}
+                        style={{ fontSize: 16, padding: 5 }}
                         onChangeText={value => {
                             this.setState({ setDescPostagem: value });
                         }}
                     />
                 </View>
 
-                <View style={{ paddingHorizontal: 40, paddingHorizontal: 20 }}>
+                <View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
                     <Button style={{
                         alignItems: 'center',
                         justifyContent: 'center',

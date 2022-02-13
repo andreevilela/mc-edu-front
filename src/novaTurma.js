@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import { View } from 'react-native';
 import { Text, Input, Button } from 'react-native-elements';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as api from './services/Endpoints'
 
-export default class novaTurma extends React.Component {
+export default class novaTurma extends Component {
     state = {
         setNomeTurma: {},
     }
@@ -34,21 +34,17 @@ export default class novaTurma extends React.Component {
     render() {
         return (
             <View>
-
-                <View style={{ padding: 20 }}>
-                    <Text h4>Nova Turma</Text>
-                    <Text label>Digite o nome da turma a ser criada:</Text>
-
+                <View style={{ padding: 10 }}>
+                    <Text label style={{ padding: 10 }}>Digite o nome da turma a ser criada:</Text>
                     <Input
-                        style={{ fontSize: 16 }}
+                        style={{ fontSize: 16, padding: 10 }}
                         onChangeText={value => {
                             this.setState({ setNomeTurma: value });
                         }}
                         placeholder="Nome da Turma"
                     />
                 </View>
-
-                <View style={{ paddingHorizontal: 40, paddingHorizontal: 20 }}>
+                <View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
                     <Button style={{
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -58,9 +54,7 @@ export default class novaTurma extends React.Component {
                         onPress={() => this.criarTurma()}
                     />
                 </View>
-
             </View>
-
         );
 
     }

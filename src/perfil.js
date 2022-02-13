@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Button, View, Text, Image } from 'react-native';
 import { ListItem, Avatar } from 'react-native-elements';
+import { GoogleSignin } from '@react-native-community/google-signin';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as api from './services/Endpoints'
-import { GoogleSignin } from '@react-native-community/google-signin';
 
 GoogleSignin.configure({
     webClientId: "403824723231-81fko73qi2ambcvu4coruuk0gtt1nu0a.apps.googleusercontent.com",
@@ -61,7 +61,7 @@ export default props => {
                 <Text >{usuario.email}</Text>
             </View>
 
-            <View style={{ paddingHorizontal: 40, paddingHorizontal: 20 }}>
+            <View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
                 <Button style={{
                     alignItems: 'center',
                     justifyContent: 'center',

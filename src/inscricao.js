@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import { View } from 'react-native';
 import { Text, Input, Button } from 'react-native-elements';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as api from './services/Endpoints'
 
-export default class inscricao extends React.Component {
+export default class inscricao extends Component {
     state = {
         setCodigoTurma: {},
     }
@@ -34,11 +34,10 @@ export default class inscricao extends React.Component {
     render() {
         return (
             <View>
-                <View style={{ padding: 20 }}>
-                    <Text h4>Inscrição em Nova Turma</Text>
-                    <Text label>Digite o código da turma em que deseja entrar:</Text>
+                <View style={{ padding: 10 }}>
+                    <Text label style={{ padding: 10 }}>Digite o código da turma em que deseja entrar:</Text>
                     <Input
-                        style={{ fontSize: 16 }}
+                        style={{ fontSize: 16, padding: 10 }}
                         onChangeText={value => {
                             this.setState({ setCodigoTurma: value });
                         }}
@@ -46,7 +45,7 @@ export default class inscricao extends React.Component {
                     />
                 </View>
 
-                <View style={{ paddingHorizontal: 40, paddingHorizontal: 20 }}>
+                <View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
                     <Button style={{
                         alignItems: 'center',
                         justifyContent: 'center',

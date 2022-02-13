@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Button, View, Text, FlatList } from 'react-native';
 import { ListItem, Avatar } from 'react-native-elements';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as api from './services/Endpoints'
 
 export default props => {
   const [turma, setTurma] = useState(props.route.params ? props.route.params : {})
-  //console.log(turma.id)
+  //console.log("Turma -> " + turma.id)
+  //console.log("Props -> " + props.route.params)
 
   const [postagens, setPostagens] = useState([null]);
   const [loaded, setLoaded] = useState(false);
@@ -16,12 +18,13 @@ export default props => {
 
   const getPostagensTurma = async () => {
     try {
-      const postagens = await api.getPostagensTurma(turma.id).catch((error) => {
+      const postagens = await api.getPostagensTurma(turma.id != undefined ? turma.id : props.route.params).catch((error) => {
         console.log({ ...error })
       });
       //console.log(postagens.data)
       setPostagens(postagens.data)
       setLoaded(true)
+      await AsyncStorage.setItem("turma", turma.id != undefined ? turma.id.toString() : props.route.params);
     } catch (e) {
       console.log("ERROR_GET_POSTAGENS");
       showError(e)
