@@ -1,11 +1,22 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { View } from 'react-native';
 import { Text, Input, Button } from 'react-native-elements';
+
+import DatePicker from 'react-native-date-picker'
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as api from './services/Endpoints'
 
 export default class novaPostagem extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            date: new Date(),
+            open: false,
+        }
+    }
+
     state = {
         setTituloPostagem: null,
         setDataEntrega: null,
@@ -54,13 +65,21 @@ export default class novaPostagem extends Component {
                         }}
                     />
                     <Text label style={{ padding: 5 }}>Data de Entrega:</Text>
-                    <Input
-                        placeholder="Data de Entrega"
-                        style={{ fontSize: 16, padding: 5 }}
-                        onChangeText={value => {
-                            this.setState({ setDataEntrega: value });
+                    <Button title="Selecionar Data de Entrega" onPress={() => this.setState({ open: true })} />
+                    <DatePicker
+                        modal
+                        open={this.state.open}
+                        date={this.state.date}
+                        onConfirm={(date) => {
+                            this.setState({ open: false })
+                            this.setState({ date: date })
+                            this.setState({ setDataEntrega: date })
                         }}
-                    />
+                        onCancel={() => {
+                            this.setState({ open: false })
+                        }}
+                        mode="date"
+                        androidVariant='nativeAndroid' />
                     <Text label style={{ padding: 5 }}>Descrição:</Text>
                     <Input
                         placeholder="Descrição da Postagem"
