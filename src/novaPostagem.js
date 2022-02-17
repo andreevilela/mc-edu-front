@@ -86,7 +86,9 @@ export default class novaPostagem extends Component {
                         onChangeText={value => {
                             this.setState({ setDescPostagem: value });
                         }}
-                        style={{ height: 200, flexDirection: 'row', flex: 1 }}
+                        multiline={true} // Para preencher o texto verticalmente, no Android fica apenas no meio
+                        scrollEnabled={true}
+                        style={{ height: 200 }}
                     />
                 </View>
 
