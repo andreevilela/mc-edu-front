@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import { View } from 'react-native';
 import { Text, Input, Button } from 'react-native-elements';
 
@@ -77,6 +77,7 @@ export default class novaPostagem extends Component {
                         }}
                         onCancel={() => {
                             this.setState({ open: false })
+                            this.setState({ setDataEntrega: null })
                         }}
                         mode="date"
                         androidVariant='nativeAndroid' />
