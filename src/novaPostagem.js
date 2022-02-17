@@ -27,11 +27,8 @@ export default class novaPostagem extends Component {
     createPost = async () => {
         var data = {
             titulo: this.state.setTituloPostagem, // Pega o texto que está no input de Título
-            // Ver se passa entre [] ou não
             usuario: await AsyncStorage.getItem("id"), // Pega o ID do usuário (professor) que está entrando na turma
-            // Ver se passa entre [] ou não e como vai salvar o ID da turma aberta para puxar aqui
             turma: await AsyncStorage.getItem("turma"), // Pega o ID da turma que está aberta
-            // Implementar Date-Picker
             dataEntrega: this.state.setDataEntrega, // Pega o texto que está no input de Data de Entrega
             descricao: this.state.setDescPostagem, // Pega o texto que está no input de Descrição
 
@@ -70,6 +67,7 @@ export default class novaPostagem extends Component {
                         modal
                         open={this.state.open}
                         date={this.state.date}
+                        // locale={pt - BR}
                         onConfirm={(date) => {
                             this.setState({ open: false })
                             this.setState({ date: date })
