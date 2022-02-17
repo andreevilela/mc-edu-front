@@ -86,6 +86,7 @@ export default class novaPostagem extends Component {
                         onChangeText={value => {
                             this.setState({ setDescPostagem: value });
                         }}
+                        style={{ height: 200, flexDirection: 'row', flex: 1 }}
                     />
                 </View>
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useIsFocused } from '@react-navigation/native'
 import { Button, Icon } from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -20,10 +21,11 @@ const HomeStack = createNativeStackNavigator();
 export default props => {
 
   const [email, setEmail] = useState("");
+  const isFocused = useIsFocused()
 
   useEffect(() => {
     getEmail();
-  }, [])
+  }, [isFocused])
 
   const getEmail = async () => {
     setEmail(await AsyncStorage.getItem("email"))
@@ -51,7 +53,7 @@ export default props => {
                   headerBackVisible: false,
                   headerRight: () => (
                     <Button
-                      onPress={() => email.includes("estudante") ? 
+                      onPress={() => email.includes("estudante") ?
                         navigation.push("Inscrição Turma") :
                         navigation.push("Nova Turma")}
                       type="clear"

@@ -38,8 +38,8 @@ export default class Auth extends Component {
             //await AsyncStorage.setItem("id", this.state.userGoogleInfo.idToken);
             await AsyncStorage.setItem("id", this.state.userGoogleInfo.user.id);
             await AsyncStorage.setItem("email", this.state.userGoogleInfo.user.email);
-            //console.log(await AsyncStorage.getItem("id"));
-            //console.log(await AsyncStorage.getItem("email"));
+            console.log(await AsyncStorage.getItem("id"));
+            console.log(await AsyncStorage.getItem("email"));
 
             console.log("CALLING_SIGN_UP");
             this.signUp()

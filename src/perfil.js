@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, View, Text, Image } from 'react-native';
 import { ListItem, Avatar } from 'react-native-elements';
+import { useIsFocused } from '@react-navigation/native'
 import { GoogleSignin } from '@react-native-community/google-signin';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as api from './services/Endpoints'
@@ -12,13 +13,17 @@ GoogleSignin.configure({
 
 export default props => {
     const [usuario, setUsuario] = useState([null]);
+    const isFocused = useIsFocused()
 
     useEffect(() => {
         getUsuario();
-    }, [])
+    }, [isFocused])
 
+    // Após o logout essa função roda novamente de forma assíncrona e retorna erro 500 (ERROR_GET_USUARIO), verificar se interfere em algo
+    // Criar tela para exibir mensagem caso não tenha usuário logado
     const getUsuario = async () => {
         try {
+            console.log("START_GET_USUARIO");
             const id = await AsyncStorage.getItem("id");
             //console.log("Id -> " + id)
             const usuario = await api.getUsuario(id).catch((error) => {
@@ -26,9 +31,10 @@ export default props => {
             });
             //console.log(usuario.data)
             setUsuario(usuario.data)
+            console.log("END_GET_USUARIO");
         } catch (e) {
             console.log("ERROR_GET_USUARIO");
-            showError(e)
+            //showError(e)
         }
     };
 
@@ -38,6 +44,9 @@ export default props => {
             await GoogleSignin.revokeAccess();
             console.log("REVOKE_ACCESS_OK");
             await GoogleSignin.signOut();
+            await AsyncStorage.clear();
+            console.log(await AsyncStorage.getItem("id"));
+            console.log(await AsyncStorage.getItem("email"));
             console.log("SIGN_OUT_OK");
             props.navigation.navigate('Entrar');
             console.log("END_SIGN_OUT");
@@ -47,7 +56,6 @@ export default props => {
     };
 
     return (
-
         <View>
             <View style={{ padding: 15, alignItems: "center" }}>
                 <Avatar
