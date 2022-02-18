@@ -19,6 +19,7 @@ const SettingsStack = createNativeStackNavigator();
 const HomeStack = createNativeStackNavigator();
 
 export default props => {
+
   const getEmail = async () => {
     const email = await AsyncStorage.getItem("email")
     console.log("Email -> " + email)
