@@ -20,16 +20,10 @@ const HomeStack = createNativeStackNavigator();
 
 export default props => {
 
-  const [email, setEmail] = useState("");
-  const isFocused = useIsFocused()
-
-  useEffect(() => {
-    getEmail();
-  }, [isFocused])
-
   const getEmail = async () => {
-    setEmail(await AsyncStorage.getItem("email"))
-    console.log(email)
+    const email = await AsyncStorage.getItem("email")
+    console.log("Email -> " + email)
+    return email.includes("estudante")
   };
 
   return (
@@ -53,7 +47,7 @@ export default props => {
                   headerBackVisible: false,
                   headerRight: () => (
                     <Button
-                      onPress={() => email.includes("estudante") ?
+                      onPress={async () => await getEmail() ?
                         navigation.push("Inscrição Turma") :
                         navigation.push("Nova Turma")}
                       type="clear"
