@@ -83,14 +83,14 @@ export default class Auth extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: "rgb(55,55,55)" }}>
-                <Image source={{ uri: "https://firebasestorage.googleapis.com/v0/b/mc-edu-bb190.appspot.com/o/logo%202%20mc.png?alt=media&token=d0d186e2-d8d3-432e-b74b-59d7f32b7c73" }}
-                    style={{ width: 200, height: 200, marginBottom: 100 }}
+            <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: "rgb(0,55,151)" }}>
+                <Image source={{ uri: "https://scontent.fudi1-2.fna.fbcdn.net/v/t39.30808-6/252737140_1757946124401453_8582136219265548491_n.png?_nc_cat=100&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=6PDpadaUg_YAX8cleqx&_nc_ht=scontent.fudi1-2.fna&oh=00_AT-227kN-OQQS1X4LFBrGhZhPkKWaEo1qINAgzVhem4lEw&oe=62142542" }}
+                    style={{ width: 300, height: 300 }}
                 />
                 <GoogleSigninButton
-                    style={{ width: 222, height: 55 }}
+                    style={{ width: 250, height: 55 }}
                     size={GoogleSigninButton.Size.Wide}
-                    color={GoogleSigninButton.Color.Dark}
+                    color={GoogleSigninButton.Color.Light}
                     onPress={this.signIn}
                 />
                 {/*this.state.loaded ?
