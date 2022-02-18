@@ -53,7 +53,7 @@ export default props => {
                   headerBackVisible: false,
                   headerRight: () => (
                     <Button
-                      onPress={() => email.includes("estudante") ?
+                      onPress={() => email != null && email.includes("estudante") ?
                         navigation.push("Inscrição Turma") :
                         navigation.push("Nova Turma")}
                       type="clear"
