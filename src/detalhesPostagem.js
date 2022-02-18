@@ -26,7 +26,7 @@ export default props => {
 
     return (
         <View style={{ flex: 1, padding: 15 }}>
-            <Text style={{ marginTop: 5, fontSize: 22, color: "#0066cc" }}>
+            <Text style={{ marginTop: 5, fontSize: 22, color: "#0073e6" }}>
                 { detalhes.titulo }
             </Text>
             <Text style={{}}>
@@ -36,7 +36,7 @@ export default props => {
                     "Conteúdo"
                 }
             </Text>
-            <Text style={{ borderBottomColor: "#0066cc", borderBottomWidth: 1 }}></Text>
+            <Text style={{ borderBottomColor: "#0073e6", borderBottomWidth: 1 }}></Text>
             <Text style={{ marginTop: 20 }}>
                 { detalhes.descricao }
             </Text>

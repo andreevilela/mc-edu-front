@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { Text, Input, Button } from 'react-native-elements';
+import { Text, Input, Button, Icon } from 'react-native-elements';
 
 import DatePicker from 'react-native-date-picker'
 
@@ -61,8 +61,15 @@ export default class novaPostagem extends Component {
                             this.setState({ setTituloPostagem: value });
                         }}
                     />
-                    <Text label style={{ padding: 5 }}>Data de Entrega:</Text>
-                    <Button title="Selecionar Data de Entrega" onPress={() => this.setState({ open: true })} />
+                    <Text label style={{ padding: 5, paddingBottom: 15 }}>Data de Entrega:</Text>
+                    <Button
+                        icon={{
+                            name: "date-range",
+                            size: 25,
+                            color: "#0073e6"
+                        }} title="Escolha uma data"
+                        type="outline"
+                        onPress={() => this.setState({ open: true })} />
                     <DatePicker
                         modal
                         open={this.state.open}
@@ -79,7 +86,7 @@ export default class novaPostagem extends Component {
                         }}
                         mode="date"
                         androidVariant='nativeAndroid' />
-                    <Text label style={{ padding: 5 }}>Descrição:</Text>
+                    <Text label style={{ padding: 5, paddingTop: 30 }}>Descrição:</Text>
                     <Input
                         placeholder="Descrição da Postagem"
                         style={{ fontSize: 16, padding: 5 }}
@@ -88,7 +95,7 @@ export default class novaPostagem extends Component {
                         }}
                         multiline={true} // Para preencher o texto verticalmente, no Android fica apenas no meio
                         scrollEnabled={true}
-                        style={{ height: 200 }}
+                        style={{ height: 100 }}
                     />
                 </View>
 
