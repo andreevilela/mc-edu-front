@@ -84,7 +84,7 @@ export default class Auth extends Component {
     render() {
         return (
             <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: "rgb(0,55,151)" }}>
-                <Image source={{ uri: "https://scontent.fudi1-2.fna.fbcdn.net/v/t39.30808-6/252737140_1757946124401453_8582136219265548491_n.png?_nc_cat=100&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=6PDpadaUg_YAX8cleqx&_nc_ht=scontent.fudi1-2.fna&oh=00_AT-227kN-OQQS1X4LFBrGhZhPkKWaEo1qINAgzVhem4lEw&oe=62142542" }}
+                <Image source={{ uri: "https://firebasestorage.googleapis.com/v0/b/mc-edu-bb190.appspot.com/o/logo%20mc.png?alt=media&token=51faa885-7a78-4173-ad4d-159797080b74" }}
                     style={{ width: 300, height: 300 }}
                 />
                 <GoogleSigninButton

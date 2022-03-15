@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, KeyboardAvoidingView } from 'react-native';
 import { Text, Input, Button, Icon } from 'react-native-elements';
 
 import DatePicker from 'react-native-date-picker'
@@ -51,7 +51,7 @@ export default class novaPostagem extends Component {
 
     render() {
         return (
-            <View>
+            <KeyboardAvoidingView behavior="position" enabled>
                 <View style={{ padding: 15 }}>
                     <Text label style={{ padding: 5 }}>Título da Postagem:</Text>
                     <Input
@@ -89,13 +89,12 @@ export default class novaPostagem extends Component {
                     <Text label style={{ padding: 5, paddingTop: 30 }}>Descrição:</Text>
                     <Input
                         placeholder="Descrição da Postagem"
-                        style={{ fontSize: 16, padding: 5 }}
+                        style={{ fontSize: 16, padding: 5, height: 100 }}
                         onChangeText={value => {
                             this.setState({ setDescPostagem: value });
                         }}
                         multiline={true} // Para preencher o texto verticalmente, no Android fica apenas no meio
                         scrollEnabled={true}
-                        style={{ height: 100 }}
                     />
                 </View>
 
@@ -109,7 +108,7 @@ export default class novaPostagem extends Component {
                         onPress={() => this.createPost()}
                     />
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         );
     }
 }
