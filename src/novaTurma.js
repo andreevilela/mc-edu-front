@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { Text, Input, Button } from 'react-native-elements';
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as api from './services/Endpoints'
+import * as api from './services/Endpoints';
 
 export default class novaTurma extends Component {
     state = {
@@ -44,7 +43,7 @@ export default class novaTurma extends Component {
                         placeholder="Nome da Turma"
                     />
                 </View>
-                <View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
+                <View style={{ paddingHorizontal: 15, paddingTop: 20 }}>
                     <Button style={{
                         alignItems: 'center',
                         justifyContent: 'center',

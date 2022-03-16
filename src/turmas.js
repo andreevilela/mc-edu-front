@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Button, View, Text, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { ListItem, Avatar } from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as api from './services/Endpoints'
+import * as api from './services/Endpoints';
 
 export default props => {
     const [email, setEmail] = useState([null]);

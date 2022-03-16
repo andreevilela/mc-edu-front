@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, ToastAndroid, Button, Text, Image } from "react-native";
+import { View, Image } from "react-native";
 import {
     GoogleSignin,
     GoogleSigninButton,
     statusCodes,
 } from '@react-native-community/google-signin';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as api from './services/Endpoints'
+import * as api from './services/Endpoints';
 
 GoogleSignin.configure({
     webClientId: "403824723231-81fko73qi2ambcvu4coruuk0gtt1nu0a.apps.googleusercontent.com",

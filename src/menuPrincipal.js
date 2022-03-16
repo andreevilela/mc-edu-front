@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useIsFocused } from '@react-navigation/native'
 import { Button, Icon } from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -12,7 +11,7 @@ import Perfil from './perfil';
 import NovaTurma from './novaTurma';
 import Inscricao from './inscricao';
 import NovaPostagem from './novaPostagem';
-import Entrar from './Auth'
+import Entrar from './Auth';
 
 const Tab = createBottomTabNavigator();
 const SettingsStack = createNativeStackNavigator();

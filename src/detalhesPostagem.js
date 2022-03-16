@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Button, View, Text, FlatList } from 'react-native';
-import * as api from './services/Endpoints'
+import { View } from 'react-native';
+import { Text, Button } from 'react-native-elements';
+import DocumentPicker from './components/DocumentPicker';
+import * as api from './services/Endpoints';
 
 export default props => {
     const [postagem, setPostagem] = useState(props.route.params ? props.route.params : {})
@@ -27,19 +29,33 @@ export default props => {
     return (
         <View style={{ flex: 1, padding: 15 }}>
             <Text style={{ marginTop: 5, fontSize: 22, color: "#0073e6" }}>
-                { detalhes.titulo }
+                {detalhes.titulo}
             </Text>
             <Text style={{}}>
                 {
-                detalhes.dataEntrega != null ?
-                    "Data de entrega: " + detalhes.dataEntrega.substr(0, 10).split("-").reverse().join("/") :
-                    "Conteúdo"
+                    detalhes.dataEntrega != null ?
+                        "Data de entrega: " + detalhes.dataEntrega.substr(0, 10).split("-").reverse().join("/") :
+                        "Conteúdo"
                 }
             </Text>
             <Text style={{ borderBottomColor: "#0073e6", borderBottomWidth: 1 }}></Text>
             <Text style={{ marginTop: 20 }}>
-                { detalhes.descricao }
+                {detalhes.descricao}
             </Text>
+            <Text label style={{ padding: 5, paddingTop: 35, paddingBottom: 15, fontSize: 16, color: "#0073e6" }}>Entregar</Text>
+            <DocumentPicker />
+
+            <View style={{ paddingTop: 45}}>
+                <Button style={{
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRadius: 10,
+                }}
+                    title="Enviar"
+                    onPress={() => this.createPost()}
+                />
+            </View>
         </View>
+
     );
 }

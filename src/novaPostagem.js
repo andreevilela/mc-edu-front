@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { View, KeyboardAvoidingView } from 'react-native';
-import { Text, Input, Button, Icon } from 'react-native-elements';
-
-import DatePicker from 'react-native-date-picker'
-
+import { View, ScrollView } from 'react-native';
+import { Text, Input, Button } from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as api from './services/Endpoints'
+import DatePicker from 'react-native-date-picker';
+import DocumentPicker from './components/DocumentPicker';
+import * as api from './services/Endpoints';
+
 
 export default class novaPostagem extends Component {
 
@@ -51,17 +51,17 @@ export default class novaPostagem extends Component {
 
     render() {
         return (
-            <KeyboardAvoidingView behavior="position" enabled>
+            <ScrollView>
                 <View style={{ padding: 15 }}>
-                    <Text label style={{ padding: 5 }}>Título da Postagem:</Text>
+                    <Text label>Título da Postagem:</Text>
                     <Input
                         placeholder="Título da Postagem"
-                        style={{ fontSize: 16, padding: 5 }}
+                        style={{ fontSize: 16}}
                         onChangeText={value => {
                             this.setState({ setTituloPostagem: value });
                         }}
                     />
-                    <Text label style={{ padding: 5, paddingBottom: 15 }}>Data de Entrega:</Text>
+                    <Text label style={{ paddingBottom: 15 }}>Data de Entrega:</Text>
                     <Button
                         icon={{
                             name: "date-range",
@@ -86,19 +86,22 @@ export default class novaPostagem extends Component {
                         }}
                         mode="date"
                         androidVariant='nativeAndroid' />
-                    <Text label style={{ padding: 5, paddingTop: 30 }}>Descrição:</Text>
+                    <Text label style={{ paddingTop: 30 }}>Descrição:</Text>
                     <Input
                         placeholder="Descrição da Postagem"
-                        style={{ fontSize: 16, padding: 5, height: 100 }}
+                        style={{ fontSize: 16, height: 100 }}
                         onChangeText={value => {
                             this.setState({ setDescPostagem: value });
                         }}
                         multiline={true} // Para preencher o texto verticalmente, no Android fica apenas no meio
                         scrollEnabled={true}
                     />
+                    <Text label style={{ paddingTop: 15, paddingBottom: 15 }}>Arquivos:</Text>
+                    <DocumentPicker/>
+
                 </View>
 
-                <View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
+                <View style={{ paddingHorizontal: 15, paddingTop: 20, paddingBottom: 30 }}>
                     <Button style={{
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -108,7 +111,7 @@ export default class novaPostagem extends Component {
                         onPress={() => this.createPost()}
                     />
                 </View>
-            </KeyboardAvoidingView>
+            </ScrollView>
         );
     }
 }
