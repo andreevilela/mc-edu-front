@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from 'react-native-elements';
 import DocumentPicker, {
     DirectoryPickerResponse,
@@ -6,16 +6,38 @@ import DocumentPicker, {
     isInProgress,
     types,
 } from 'react-native-document-picker';
-import { useEffect } from 'react';
+import * as RNFS from 'react-native-fs';
 
 export default function Document() {
-    const [result, setResult] = React.useState<
-        Array<DocumentPickerResponse> | DirectoryPickerResponse | undefined | null
-    >()
+    const [result, setResult] = useState([])
 
     useEffect(() => {
-        console.log(JSON.stringify(result, null, 2))
+        chooseFile()
     }, [result])
+
+    function chooseFile() {
+        console.log(result.map(it => it))
+        result.map(it => RNFS.readFile(it.uri, 'base64').then(res => {
+            console.log("res -> " + res)
+        })
+        .catch(err => {
+            console.log(err.message, err.code);
+        }));
+    }
+
+    function normalize(path) {
+        const prefix = "content://";
+        if(path.startsWith(prefix)) {
+            path = path.substring(prefix.length);
+            try {
+                path = decodeURI(path);
+            } catch (e) {
+
+            } 
+        }
+        console.log("normalize -> " + path)
+        return path
+    }
 
     const handleError = (err: unknown) => {
         if (DocumentPicker.isCancel(err)) {
