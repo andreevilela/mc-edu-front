@@ -1,21 +1,56 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from 'react-native-elements';
 import DocumentPicker, {
-    DirectoryPickerResponse,
-    DocumentPickerResponse,
-    isInProgress,
-    types,
+    isInProgress
 } from 'react-native-document-picker';
-import { useEffect } from 'react';
+import * as RNFS from 'react-native-fs';
+import storage from '@react-native-firebase/storage';
 
 export default function Document() {
-    const [result, setResult] = React.useState<
-        Array<DocumentPickerResponse> | DirectoryPickerResponse | undefined | null
-    >()
+    const [result, setResult] = useState([])
 
     useEffect(() => {
-        console.log(JSON.stringify(result, null, 2))
+        chooseFile()
     }, [result])
+
+    function chooseFile() {
+        console.log(result.map(it => it))
+        result.map(it => RNFS.readFile(it.uri, 'base64').then(res => {
+            //console.log("res -> " + res)
+            saveItem(it, res)
+        })
+            .catch(err => {
+                console.log(err.message, err.code);
+            }));
+    }
+
+    async function saveItem(item, res) {
+        const uploadTask = storage().ref(`allFiles/${item.name}`)
+            .putString(res, 'base64', {contentType: item.type});
+        
+            uploadTask.on('state_changed',
+            (snapshot) => {
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+                switch (snapshot.state) {
+                    case storage.TaskState.PAUSED: // or 'paused'
+                        console.log('Upload is paused');
+                        break;
+                    case storage.TaskState.RUNNING: // or 'running'
+                        console.log('Upload is running');
+                        break;
+                }
+            },
+            (error) => {
+                console.log(error);
+            },
+            () => {
+                uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                    console.log('File available at', downloadURL);
+                });
+            }
+        );
+    }
 
     const handleError = (err: unknown) => {
         if (DocumentPicker.isCancel(err)) {
@@ -34,7 +69,7 @@ export default function Document() {
                 name: "file-upload",
                 size: 25,
                 color: "#0073e6"
-            }} 
+            }}
             title="Adicione arquivos"
             type="outline"
             onPress={() => {
