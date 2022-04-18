@@ -52,20 +52,6 @@ export default function Document() {
         );
     }
 
-    function normalize(path) {
-        const prefix = "content://";
-        if (path.startsWith(prefix)) {
-            path = path.substring(prefix.length);
-            try {
-                path = decodeURI(path);
-            } catch (e) {
-
-            }
-        }
-        console.log("normalize -> " + path)
-        return path
-    }
-
     const handleError = (err: unknown) => {
         if (DocumentPicker.isCancel(err)) {
             console.warn('cancelled')
