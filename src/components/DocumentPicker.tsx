@@ -5,9 +5,12 @@ import DocumentPicker, {
 } from 'react-native-document-picker';
 import * as RNFS from 'react-native-fs';
 import storage from '@react-native-firebase/storage';
+import { TouchableOpacity, Text, View } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Document() {
     const [result, setResult] = useState([])
+    const [url, setUrl] = useState([])
 
     useEffect(() => {
         chooseFile()
@@ -47,6 +50,8 @@ export default function Document() {
             () => {
                 uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
                     console.log('File available at', downloadURL);
+                    url.push({name: item.name, value: downloadURL});
+                    console.log("URL -> " + url.map(it => it.name))
                 });
             }
         );
@@ -64,6 +69,7 @@ export default function Document() {
     }
 
     return (
+        <View>
         <Button
             icon={{
                 name: "file-upload",
@@ -76,5 +82,12 @@ export default function Document() {
                 DocumentPicker.pickMultiple().then(setResult).catch(handleError)
             }}
         />
+            <TouchableOpacity>
+                <Text>tag1</Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+                <Text>tag2</Text>
+            </TouchableOpacity>
+        </View>
     )
 }
