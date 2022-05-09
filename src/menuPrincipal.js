@@ -63,7 +63,7 @@ export default props => {
                 return {
                   headerRight: () => (
                     <Button
-                      onPress={() => navigation.navigate("Nova Postagem")}
+                      onPress={() => navigation.push("Nova Postagem")}
                       type="clear"
                       icon={<Icon name="add-circle" size={40} color="gray" />}
                     />
