@@ -9,6 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function Document() {
     const [result, setResult] = useState([])
     const [url, setUrl] = useState([])
+    var link = []
 
     useEffect(() => {
         chooseFile()
@@ -48,13 +49,12 @@ export default function Document() {
             () => {
                 uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
                     console.log('File available at', downloadURL);
-                    url.push({ url: downloadURL, name: item.name });
-                    console.log("URL -> " + url.map(it => it.name))
+                    link.push({ url: downloadURL, name: item.name });
+                    console.log("URL -> " + link.map(it => it.name))
+                    input()
                 });
             }
         );
-        //await AsyncStorage.removeItem("arquivos");
-        await AsyncStorage.setItem("arquivos", JSON.stringify(url));
     }
 
     function alert(uri) {
@@ -73,11 +73,17 @@ export default function Document() {
     }
 
     async function remove(uri) {
-        url.splice(url.indexOf(uri), 1);
-        //await AsyncStorage.removeItem("arquivos");
-        await AsyncStorage.setItem("arquivos", JSON.stringify(url));
+        console.log("REMOVE1 -> " + JSON.stringify(url))
+        var link = url;
+        link.splice(link.indexOf(uri), 1);
+        console.log("REMOVE2 -> " + JSON.stringify(link))
+        console.log("REMOVE3 -> " + link.map(it => it.name))
+        await AsyncStorage.removeItem("arquivos");
+        setUrl([]);
+        setUrl(link);
+        await AsyncStorage.setItem("arquivos", JSON.stringify(link));
         const x = await AsyncStorage.getItem("arquivos");
-        console.log(JSON.parse(x))
+        console.log("REMOVE4" + JSON.parse(x))
     }
 
     const handleError = (err: unknown) => {
@@ -89,6 +95,14 @@ export default function Document() {
         } else {
             throw err
         }
+    }
+
+    async function input() {
+        console.log("INPUT")
+        setUrl([]);
+        setUrl(link);
+        await AsyncStorage.removeItem("arquivos");
+        await AsyncStorage.setItem("arquivos", JSON.stringify(link));
     }
 
     return (
