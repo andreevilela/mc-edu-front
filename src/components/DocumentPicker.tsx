@@ -58,6 +58,7 @@ export default function Document() {
     }
 
     function alert(uri) {
+        console.log(uri)
         Alert.alert(
             "Atenção!",
             "Deseja remover arquivo?",
@@ -74,8 +75,7 @@ export default function Document() {
 
     async function remove(uri) {
         console.log("REMOVE1 -> " + JSON.stringify(url))
-        var link = url;
-        link.splice(link.indexOf(uri), 1);
+        var link = url.filter(it => it.url != uri)
         console.log("REMOVE2 -> " + JSON.stringify(link))
         console.log("REMOVE3 -> " + link.map(it => it.name))
         await AsyncStorage.removeItem("arquivos");
