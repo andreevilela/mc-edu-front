@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { Text, Input, Button } from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as api from './services/Endpoints';
@@ -32,29 +32,31 @@ export default class inscricao extends Component {
 
     render() {
         return (
-            <View>
-                <View style={{ padding: 10 }}>
-                    <Text label style={{ padding: 10 }}>Digite o código da turma em que deseja entrar:</Text>
-                    <Input
-                        style={{ fontSize: 16, padding: 10 }}
-                        onChangeText={value => {
-                            this.setState({ setCodigoTurma: value });
-                        }}
-                        placeholder="Código da Turma"
-                    />
-                </View>
+            <ScrollView>
+                <View>
+                    <View style={{ padding: 10 }}>
+                        <Text label style={{ padding: 10 }}>Digite o código da turma em que deseja entrar:</Text>
+                        <Input
+                            style={{ fontSize: 16, padding: 10 }}
+                            onChangeText={value => {
+                                this.setState({ setCodigoTurma: value });
+                            }}
+                            placeholder="Código da Turma"
+                        />
+                    </View>
 
-                <View style={{ paddingHorizontal: 15, paddingTop: 20 }}>
-                    <Button style={{
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        borderRadius: 10,
-                    }}
-                        title="Entrar"
-                        onPress={() => this.entrarTurma()}
-                    />
+                    <View style={{ paddingHorizontal: 15, paddingTop: 20 }}>
+                        <Button style={{
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            borderRadius: 10,
+                        }}
+                            title="Entrar"
+                            onPress={() => this.entrarTurma()}
+                        />
+                    </View>
                 </View>
-            </View>
+            </ScrollView>
 
         );
 

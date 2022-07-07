@@ -65,6 +65,5 @@ export default props => {
                 : console.log("Carregando_Turmas")
             }
         </View>
-
     );
 }

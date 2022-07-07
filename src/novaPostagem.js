@@ -6,7 +6,6 @@ import DatePicker from 'react-native-date-picker';
 import DocumentPicker from './components/DocumentPicker';
 import * as api from './services/Endpoints';
 
-
 export default class novaPostagem extends Component {
 
     constructor(props) {
@@ -71,7 +70,7 @@ export default class novaPostagem extends Component {
                     <Text label>Título da Postagem:</Text>
                     <Input
                         placeholder="Título da Postagem"
-                        style={{ fontSize: 16}}
+                        style={{ fontSize: 16 }}
                         onChangeText={value => {
                             this.setState({ setTituloPostagem: value });
                         }}
@@ -112,7 +111,7 @@ export default class novaPostagem extends Component {
                         scrollEnabled={true}
                     />
                     <Text label style={{ paddingTop: 15, paddingBottom: 15 }}>Arquivos:</Text>
-                    <DocumentPicker/>
+                    <DocumentPicker />
 
                 </View>
 
