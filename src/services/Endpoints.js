@@ -38,3 +38,11 @@ export const joinTurma = data => {
 export const createPost = data => {
   return httpClient.post("/postagens", data);
 };
+
+export const deletePost = id => {
+  return httpClient.delete(`/postagens/${id}`);
+};
+
+export const editPost = data => {
+  return httpClient.put("/postagens", data);
+};

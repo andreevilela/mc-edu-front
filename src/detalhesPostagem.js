@@ -45,7 +45,7 @@ export default props => {
             <Text label style={{ padding: 5, paddingTop: 35, paddingBottom: 15, fontSize: 16, color: "#0073e6" }}>Entregar</Text>
             <DocumentPicker />
 
-            <View style={{ paddingTop: 45}}>
+            <View style={{ paddingTop: 45 }}>
                 <Button style={{
                     alignItems: 'center',
                     justifyContent: 'center',

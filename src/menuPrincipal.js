@@ -12,6 +12,7 @@ import Perfil from './perfil';
 import NovaTurma from './novaTurma';
 import Inscricao from './inscricao';
 import NovaPostagem from './novaPostagem';
+import EditPostagem from './editPostagem';
 import Entrar from './Auth';
 import Delete from './delete';
 import Edit from './edit';
@@ -81,8 +82,8 @@ export default props => {
                 return {
                   headerRight: () => (
                     <View style={{ flexDirection: "row" }}>
-                      <Delete />
                       <Edit />
+                      <Delete />
                     </View>
 
                   )
@@ -92,6 +93,7 @@ export default props => {
             <SettingsStack.Screen name="Nova Turma" component={NovaTurma} />
             <SettingsStack.Screen name="Inscrição Turma" component={Inscricao} />
             <SettingsStack.Screen name="Nova Postagem" component={NovaPostagem} />
+            <SettingsStack.Screen name="Editar Postagem" component={EditPostagem} />
           </SettingsStack.Navigator>
         )}
 
