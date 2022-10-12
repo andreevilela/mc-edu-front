@@ -6,46 +6,68 @@ import DatePicker from 'react-native-date-picker';
 import DocumentPicker from './components/DocumentPicker';
 import * as api from './services/Endpoints';
 
-export default class novaPostagem extends Component {
+export default class editPostagem extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            date: new Date(),
+            date: detalhes.dataEntrega,
             open: false,
         }
+
+        const [postagem] = useState(props.route.params ? props.route.params : {})
+        //console.log(postagem.id)
+        const [detalhes, setDetalhes] = useState([null]);
+
+        useEffect(() => {
+            getDetalhesPostagem();
+        }, [])
+
+        const getDetalhesPostagem = async () => {
+            try {
+                const detalhes = await api.getDetalhesPostagem(postagem.id).catch((error) => {
+                    console.log({ ...error })
+                });
+                //console.log(detalhes.data)
+                setDetalhes(detalhes.data)
+            } catch (e) {
+                console.log("ERROR_GET_DETALHES_POSTAGEM");
+                showError(e)
+            }
+        };
+
     }
 
+    // Setando os dados de acordo com o que foi buscado no ID da postagem
     state = {
-        setTituloPostagem: null,
-        setDataEntrega: null,
-        setDescPostagem: null,
+        setTituloPostagem: detalhes.titulo,
+        setDataEntrega: detalhes.dataEntrega,
+        setDescPostagem: detalhes.descricao,
     }
 
-    // Realiza uma nova postagem na turma passando o ID da turma que está aberta e o ID do usuário(professor) logado
-    createPost = async () => {
+    editPost = async () => {
         var data = {
-            titulo: this.state.setTituloPostagem, // Pega o texto que está no input de Título
-            usuario: await AsyncStorage.getItem("id"), // Pega o ID do usuário (professor) que está entrando na turma
-            turma: await AsyncStorage.getItem("turma"), // Pega o ID da turma que está aberta
-            dataEntrega: this.state.setDataEntrega, // Pega o texto que está no input de Data de Entrega
-            descricao: this.state.setDescPostagem, // Pega o texto que está no input de Descrição
+            titulo: this.state.setTituloPostagem,
+            usuario: await AsyncStorage.getItem("id"),
+            turma: await AsyncStorage.getItem("turma"),
+            dataEntrega: this.state.setDataEntrega,
+            descricao: this.state.setDescPostagem,
 
             arquivos: JSON.parse(await AsyncStorage.getItem("arquivos"))
         }
         try {
-            console.log("START_CREATE_POST");
-            console.log("CONSUMING_API_CREATE_POST"); // Está passando todos os dados
+            console.log("START_EDIT_POST");
+            console.log("CONSUMING_API_EDIT_POST"); // Está passando todos os dados
             console.log("DATA -> " + JSON.stringify(data));
-            const createPost = await api.createPost(data).catch((error) => {
+            const editPost = await api.editPost(data).catch((error) => {
                 console.log({ ...error })
             });
             console.log("RETURN_API_POST -> " + JSON.stringify(data));
             //await AsyncStorage.removeItem("arquivos");
             this.props.navigation.push('Mural', data.turma); // Push navega para o estado atualizado da página
-            console.log("END_CREATE_POST");
+            console.log("END_EDIT_POST");
         } catch (e) {
-            console.log("ERROR_CREATE_POST");
+            console.log("ERROR_EDIT_POST");
             showError(e)
         }
     };
@@ -122,7 +144,7 @@ export default class novaPostagem extends Component {
                         borderRadius: 10,
                     }}
                         title="Salvar"
-                        onPress={() => this.createPost()}
+                        onPress={() => this.editPost()}
                     />
                 </View>
             </ScrollView>

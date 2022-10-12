@@ -1,4 +1,5 @@
 import React from 'react';
+import { View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Button, Icon } from 'react-native-elements';
@@ -12,7 +13,10 @@ import NovaTurma from './novaTurma';
 import Inscricao from './inscricao';
 import NovaPostagem from './novaPostagem';
 import InfoTurma from './infoTurma';
+import EditPostagem from './editPostagem';
 import Entrar from './Auth';
+import Delete from './delete';
+import Edit from './edit';
 
 const Tab = createBottomTabNavigator();
 const SettingsStack = createNativeStackNavigator();
@@ -79,11 +83,26 @@ export default props => {
                 }
               }}
             />
-            <SettingsStack.Screen name="Detalhes" component={DetalhesPostagem} />
+            <SettingsStack.Screen
+              name="Detalhes"
+              component={DetalhesPostagem}
+              options={({ navigation }) => {
+                return {
+                  headerRight: () => (
+                    <View style={{ flexDirection: "row" }}>
+                      <Edit />
+                      <Delete />
+                    </View>
+
+                  )
+                }
+              }}
+            />
             <SettingsStack.Screen name="Nova Turma" component={NovaTurma} />
             <SettingsStack.Screen name="Inscrição Turma" component={Inscricao} />
             <SettingsStack.Screen name="Nova Postagem" component={NovaPostagem} />
             <SettingsStack.Screen name="Info Turma" component={InfoTurma} />
+            <SettingsStack.Screen name="Editar Postagem" component={EditPostagem} />
           </SettingsStack.Navigator>
         )}
 

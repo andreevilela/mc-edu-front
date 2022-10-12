@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { Text, Input, Button } from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as api from './services/Endpoints';
@@ -32,28 +32,30 @@ export default class novaTurma extends Component {
 
     render() {
         return (
-            <View>
-                <View style={{ padding: 10 }}>
-                    <Text label style={{ padding: 10 }}>Digite o nome da turma a ser criada:</Text>
-                    <Input
-                        style={{ fontSize: 16, padding: 10 }}
-                        onChangeText={value => {
-                            this.setState({ setNomeTurma: value });
+            <ScrollView>
+                <View>
+                    <View style={{ padding: 10 }}>
+                        <Text label style={{ padding: 10 }}>Digite o nome da turma a ser criada:</Text>
+                        <Input
+                            style={{ fontSize: 16, padding: 10 }}
+                            onChangeText={value => {
+                                this.setState({ setNomeTurma: value });
+                            }}
+                            placeholder="Nome da Turma"
+                        />
+                    </View>
+                    <View style={{ paddingHorizontal: 15, paddingTop: 20 }}>
+                        <Button style={{
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            borderRadius: 10,
                         }}
-                        placeholder="Nome da Turma"
-                    />
+                            title="Criar"
+                            onPress={() => this.criarTurma()}
+                        />
+                    </View>
                 </View>
-                <View style={{ paddingHorizontal: 15, paddingTop: 20 }}>
-                    <Button style={{
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        borderRadius: 10,
-                    }}
-                        title="Criar"
-                        onPress={() => this.criarTurma()}
-                    />
-                </View>
-            </View>
+            </ScrollView>
         );
 
     }

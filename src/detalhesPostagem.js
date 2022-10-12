@@ -47,7 +47,7 @@ export default props => {
             </Text>
             <DocumentPicker />
 
-            <View style={{ paddingTop: 45}}>
+            <View style={{ paddingTop: 45 }}>
                 <Button style={{
                     alignItems: 'center',
                     justifyContent: 'center',

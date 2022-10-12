@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, ScrollView } from 'react-native';
 import { Avatar } from 'react-native-elements';
 import { useIsFocused } from '@react-navigation/native'
 import { GoogleSignin } from '@react-native-community/google-signin';
@@ -56,29 +56,31 @@ export default props => {
     };
 
     return (
-        <View>
-            <View style={{ padding: 15, alignItems: "center" }}>
-                <Avatar
-                    rounded
-                    source={{ uri: "" + usuario.foto + "" }}
-                    size={"large"}
-                />
-                <Text style={{ marginTop: 15, fontSize: 22, fontWeight: "bold" }}>
-                    {usuario.nome}
-                </Text>
-                <Text >{usuario.email}</Text>
-            </View>
+        <ScrollView>
+            <View>
+                <View style={{ padding: 15, alignItems: "center" }}>
+                    <Avatar
+                        rounded
+                        source={{ uri: "" + usuario.foto + "" }}
+                        size={"large"}
+                    />
+                    <Text style={{ marginTop: 15, fontSize: 22, fontWeight: "bold" }}>
+                        {usuario.nome}
+                    </Text>
+                    <Text >{usuario.email}</Text>
+                </View>
 
-            <View style={{ paddingHorizontal: 20, paddingTop: 25 }}>
-                <Button style={{
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderRadius: 10,
-                }}
-                    title="Sair da Conta"
-                    onPress={() => this.signOut()}
-                />
+                <View style={{ paddingHorizontal: 20, paddingTop: 25 }}>
+                    <Button style={{
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        borderRadius: 10,
+                    }}
+                        title="Sair da Conta"
+                        onPress={() => this.signOut()}
+                    />
+                </View>
             </View>
-        </View>
+        </ScrollView>
     );
 }

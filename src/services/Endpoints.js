@@ -41,4 +41,11 @@ export const createPost = data => {
 
 export const getInfoTurma = id => {
   return httpClient.get(`/turmas/${id}`);
+
+export const deletePost = id => {
+  return httpClient.delete(`/postagens/${id}`);
+};
+
+export const editPost = data => {
+  return httpClient.put("/postagens", data);
 };
