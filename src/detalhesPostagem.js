@@ -42,7 +42,9 @@ export default props => {
             <Text style={{ marginTop: 20 }}>
                 {detalhes.descricao}
             </Text>
-            <Text label style={{ padding: 5, paddingTop: 35, paddingBottom: 15, fontSize: 16, color: "#0073e6" }}>Entregar</Text>
+            <Text label style={{ padding: 5, paddingTop: 35, paddingBottom: 15, fontSize: 16, color: "#0073e6" }}>
+                Entregar
+            </Text>
             <DocumentPicker />
 
             <View style={{ paddingTop: 45}}>

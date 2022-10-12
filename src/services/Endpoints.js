@@ -38,3 +38,7 @@ export const joinTurma = data => {
 export const createPost = data => {
   return httpClient.post("/postagens", data);
 };
+
+export const getInfoTurma = id => {
+  return httpClient.get(`/turmas/${id}`);
+};

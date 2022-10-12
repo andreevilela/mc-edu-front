@@ -122,7 +122,7 @@ export default function Document() {
             {
                 url.length > 0 ?
                     url.map(it =>
-                        <TouchableOpacity onPress={() => alert(it.url)}>
+                        <TouchableOpacity onPress={() => alert(it.url)} key={it.url}>
                             <Text>{it.name}</Text>
                         </TouchableOpacity>)
                     : <TouchableOpacity></TouchableOpacity>

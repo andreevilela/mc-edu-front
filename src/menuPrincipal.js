@@ -11,6 +11,7 @@ import Perfil from './perfil';
 import NovaTurma from './novaTurma';
 import Inscricao from './inscricao';
 import NovaPostagem from './novaPostagem';
+import InfoTurma from './infoTurma';
 import Entrar from './Auth';
 
 const Tab = createBottomTabNavigator();
@@ -62,11 +63,18 @@ export default props => {
               options={({ navigation }) => {
                 return {
                   headerRight: () => (
-                    <Button
-                      onPress={() => navigation.push("Nova Postagem")}
-                      type="clear"
-                      icon={<Icon name="add-circle" size={40} color="gray" />}
-                    />
+                    <>
+                      <Button
+                        onPress={() => navigation.push("Info Turma")}
+                        type="clear"
+                        icon={<Icon name="info-outline" size={25} color="#3399ff" />}
+                      />
+                      <Button
+                        onPress={() => navigation.push("Nova Postagem")}
+                        type="clear"
+                        icon={<Icon name="add-circle" size={40} color="gray" />}
+                      />
+                    </>
                   )
                 }
               }}
@@ -75,6 +83,7 @@ export default props => {
             <SettingsStack.Screen name="Nova Turma" component={NovaTurma} />
             <SettingsStack.Screen name="Inscrição Turma" component={Inscricao} />
             <SettingsStack.Screen name="Nova Postagem" component={NovaPostagem} />
+            <SettingsStack.Screen name="Info Turma" component={InfoTurma} />
           </SettingsStack.Navigator>
         )}
 
