@@ -27,7 +27,7 @@ export default function Document() {
     }
 
     async function saveItem(item, res) {
-        const uploadTask = storage().ref(`allFiles/${item.name}`)
+        const uploadTask = storage().ref(`allFiles/${item.name+new Date().toISOString()}`)
             .putString(res, 'base64', { contentType: item.type });
 
         uploadTask.on('state_changed',

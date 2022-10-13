@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View } from 'react-native';
-import { Text, Button } from 'react-native-elements';
+import { View, Text, TouchableOpacity, Linking } from 'react-native';
+import { Button } from 'react-native-elements';
 import DocumentPicker from './components/DocumentPicker';
 import * as api from './services/Endpoints';
 
@@ -8,6 +8,7 @@ export default props => {
     const [postagem, setPostagem] = useState(props.route.params ? props.route.params : {})
     //console.log(postagem.id)
     const [detalhes, setDetalhes] = useState([null]);
+    const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
         getDetalhesPostagem();
@@ -20,11 +21,19 @@ export default props => {
             });
             //console.log(detalhes.data)
             setDetalhes(detalhes.data)
+            setLoaded(true)
         } catch (e) {
             console.log("ERROR_GET_DETALHES_POSTAGEM");
             showError(e)
         }
     };
+
+    function getName(uri) {
+        console.log(uri)
+        const begin = uri.indexOf("%2F") + 3;
+        const end = uri.lastIndexOf("?") - 28;
+        return uri.substring(begin, end);
+    }
 
     return (
         <View style={{ flex: 1, padding: 15 }}>
@@ -42,6 +51,17 @@ export default props => {
             <Text style={{ marginTop: 20 }}>
                 {detalhes.descricao}
             </Text>
+            <View style={{ marginTop: 20 }}>
+                {loaded && detalhes != null ?
+                    detalhes.arquivos.map(it =>
+                        <TouchableOpacity key={it.url}>
+                            <Text onPress={() => Linking.openURL(it.url)}>
+                                {getName(it.url)}
+                            </Text>
+                        </TouchableOpacity>)
+                    : <TouchableOpacity></TouchableOpacity>
+                }
+            </View>
             <Text label style={{ padding: 5, paddingTop: 35, paddingBottom: 15, fontSize: 16, color: "#0073e6" }}>
                 Entregar
             </Text>

@@ -13,10 +13,8 @@ import NovaTurma from './novaTurma';
 import Inscricao from './inscricao';
 import NovaPostagem from './novaPostagem';
 import InfoTurma from './infoTurma';
-import EditPostagem from './editPostagem';
+import EditaPostagem from './editaPostagem';
 import Entrar from './Auth';
-import Delete from './delete';
-import Edit from './edit';
 
 const Tab = createBottomTabNavigator();
 const SettingsStack = createNativeStackNavigator();
@@ -90,8 +88,39 @@ export default props => {
                 return {
                   headerRight: () => (
                     <View style={{ flexDirection: "row" }}>
-                      <Edit />
-                      <Delete />
+                      <Button
+                        onPress={() => navigation.navigate('Editar Postagem')}
+                        type="clear"
+                        icon={<Icon name="edit" size={25} color="#E4A11B" />}
+                      />
+                      <Button
+                        onPress={() => deletePost()}
+                        type="clear"
+                        icon={<Icon name="delete" size={25} color="#DC4C64" />}
+                      />
+                    </View>
+
+                  )
+                }
+              }}
+            />
+            <SettingsStack.Screen
+              name="Info Turma"
+              component={InfoTurma}
+              options={({ navigation }) => {
+                return {
+                  headerRight: () => (
+                    <View style={{ flexDirection: "row" }}>
+                      <Button
+                        onPress={() => navigation.navigate('Editar Postagem')}
+                        type="clear"
+                        icon={<Icon name="edit" size={25} color="#E4A11B" />}
+                      />
+                      <Button
+                        onPress={() => deletePost()}
+                        type="clear"
+                        icon={<Icon name="delete" size={25} color="#DC4C64" />}
+                      />
                     </View>
 
                   )
@@ -101,8 +130,7 @@ export default props => {
             <SettingsStack.Screen name="Nova Turma" component={NovaTurma} />
             <SettingsStack.Screen name="Inscrição Turma" component={Inscricao} />
             <SettingsStack.Screen name="Nova Postagem" component={NovaPostagem} />
-            <SettingsStack.Screen name="Info Turma" component={InfoTurma} />
-            <SettingsStack.Screen name="Editar Postagem" component={EditPostagem} />
+            <SettingsStack.Screen name="Editar Postagem" component={EditaPostagem} />
           </SettingsStack.Navigator>
         )}
 
