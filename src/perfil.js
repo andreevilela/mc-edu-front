@@ -13,7 +13,8 @@ GoogleSignin.configure({
 
 export default props => {
     const [usuario, setUsuario] = useState([null]);
-    const isFocused = useIsFocused()
+    const [loaded, setLoaded] = useState(false);
+    const isFocused = useIsFocused();
 
     useEffect(() => {
         getUsuario();
@@ -31,6 +32,7 @@ export default props => {
             });
             //console.log(usuario.data)
             setUsuario(usuario.data)
+            setLoaded(true)
             console.log("END_GET_USUARIO");
         } catch (e) {
             console.log("ERROR_GET_USUARIO");
@@ -58,6 +60,8 @@ export default props => {
     return (
         <ScrollView>
             <View>
+            {loaded && usuario != null ?
+                <>
                 <View style={{ padding: 15, alignItems: "center" }}>
                     <Avatar
                         rounded
@@ -65,7 +69,7 @@ export default props => {
                         size={"large"}
                     />
                     <Text style={{ marginTop: 15, fontSize: 22, fontWeight: "bold" }}>
-                        {usuario.nome}
+                        {usuario.nome.toUpperCase()}
                     </Text>
                     <Text >{usuario.email}</Text>
                 </View>
@@ -80,6 +84,9 @@ export default props => {
                         onPress={() => this.signOut()}
                     />
                 </View>
+                </>
+                : <View></View>
+            }
             </View>
         </ScrollView>
     );

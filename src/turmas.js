@@ -44,7 +44,7 @@ export default props => {
                     <ListItem.Subtitle>
                         {
                             email.includes("estudante") ?
-                                "Prof. " + item.professores.map(it => it.nome) :
+                                "Prof(a). " + item.professores.map(it => it.nome.toUpperCase()) :
                                 "Código: " + item.codigo
                         }
                     </ListItem.Subtitle>
