@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, Linking } from 'react-native';
+import { View, Text, TouchableOpacity, Linking, Alert } from 'react-native';
 import { Button } from 'react-native-elements';
 import DocumentPicker from './components/DocumentPicker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as api from './services/Endpoints';
 
 export default props => {
@@ -34,6 +35,32 @@ export default props => {
         const end = uri.lastIndexOf("?") - 28;
         return uri.substring(begin, end);
     }
+
+    deliverPost = async () => {
+        const turma = await AsyncStorage.getItem("turma")
+        var data = {
+            postagem: postagem.id,
+            aluno: await AsyncStorage.getItem("id"),
+
+            arquivos: JSON.parse(await AsyncStorage.getItem("arquivos"))
+        }
+        try {
+            console.log("START_DELIVER_POST");
+            console.log("CONSUMING_API_DELIVER_POST");
+            console.log("DATA -> " + JSON.stringify(data));
+            const deliverPost = await api.deliverPost(data).catch((error) => {
+                console.log({ ...error })
+            });
+            console.log("RETURN_API_DELIVER_POST -> " + JSON.stringify(data));
+            //await AsyncStorage.removeItem("arquivos");
+            Alert.alert("Alerta","Entrega efetuada com sucesso!")
+            props.navigation.push('Mural', turma);
+            console.log("END_DELIVER_POST");
+        } catch (e) {
+            console.log("ERROR_DELIVER_POST");
+            showError(e)
+        }
+    };
 
     return (
         <View style={{ flex: 1, padding: 15 }}>
@@ -74,7 +101,7 @@ export default props => {
                     borderRadius: 10,
                 }}
                     title="Enviar"
-                    onPress={() => this.createPost()}
+                    onPress={() => this.deliverPost()}
                 />
             </View>
         </View>

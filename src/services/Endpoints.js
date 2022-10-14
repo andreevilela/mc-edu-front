@@ -43,6 +43,10 @@ export const getInfoTurma = id => {
   return httpClient.get(`/turmas/${id}`)
 };
 
+export const deliverPost = data => {
+  return httpClient.post("/postagens/entrega", data);
+};
+
 export const deletePost = id => {
   return httpClient.delete(`/postagens/${id}`);
 };
