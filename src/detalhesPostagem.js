@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Linking, Alert } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button, Icon } from 'react-native-elements';
 import DocumentPicker from './components/DocumentPicker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as api from './services/Endpoints';
@@ -53,7 +53,7 @@ export default props => {
             });
             console.log("RETURN_API_DELIVER_POST -> " + JSON.stringify(data));
             //await AsyncStorage.removeItem("arquivos");
-            Alert.alert("Alerta","Entrega efetuada com sucesso!")
+            Alert.alert("Alerta!","Entrega efetuada com sucesso.")
             props.navigation.push('Mural', turma);
             console.log("END_DELIVER_POST");
         } catch (e) {
@@ -81,10 +81,13 @@ export default props => {
             <View style={{ marginTop: 20 }}>
                 {loaded && detalhes != null ?
                     detalhes.arquivos.map(it =>
-                        <TouchableOpacity key={it.url}>
-                            <Text onPress={() => Linking.openURL(it.url)}>
-                                {getName(it.url)}
-                            </Text>
+                        <TouchableOpacity style={{ flexDirection: "row" }} onPress={() => Linking.openURL(it.url)} key={it.url}>
+                            <Icon
+                                name="file-present"
+                                color="#14A44D"
+                                size={18}
+                            />
+                            <Text>{getName(it.url)}</Text>
                         </TouchableOpacity>)
                     : <TouchableOpacity></TouchableOpacity>
                 }

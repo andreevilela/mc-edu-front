@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from 'react-native-elements';
+import { Button, Icon } from 'react-native-elements';
 import DocumentPicker, { isInProgress } from 'react-native-document-picker';
 import * as RNFS from 'react-native-fs';
 import storage from '@react-native-firebase/storage';
-import { TouchableOpacity, Text, View, Alert } from "react-native";
+import { TouchableOpacity, Text, View, Alert, ActivityIndicator } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Document() {
     const [result, setResult] = useState([])
     const [url, setUrl] = useState([])
+    const [loaded, setLoaded] = useState(false);
     var link = []
 
     useEffect(() => {
@@ -34,6 +35,7 @@ export default function Document() {
             (snapshot) => {
                 var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                 console.log('Upload is ' + progress + '% done');
+                setLoaded(true);
                 switch (snapshot.state) {
                     case storage.TaskState.PAUSED: // or 'paused'
                         console.log('Upload is paused');
@@ -50,8 +52,9 @@ export default function Document() {
                 uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
                     console.log('File available at', downloadURL);
                     link.push({ url: downloadURL, name: item.name });
-                    console.log("URL -> " + link.map(it => it.name))
-                    input()
+                    console.log("URL -> " + link.map(it => it.name));
+                    input();
+                    setLoaded(false);
                 });
             }
         );
@@ -120,10 +123,20 @@ export default function Document() {
                 }}
             />
             {
+                loaded ? 
+                <ActivityIndicator style={{ marginTop: 5 }} color="#0073e6" />
+                : <View></View>
+            }
+            {
                 url.length > 0 ?
                     url.map(it =>
-                        <TouchableOpacity onPress={() => alert(it.url)} key={it.url}>
+                        <TouchableOpacity style={{ flexDirection: "row" }} onPress={() => alert(it.url)} key={it.url}>
                             <Text>{it.name}</Text>
+                            <Icon
+                                name="delete-forever"
+                                color="#DC4C64"
+                                size={18}
+                            />
                         </TouchableOpacity>)
                     : <TouchableOpacity></TouchableOpacity>
             }

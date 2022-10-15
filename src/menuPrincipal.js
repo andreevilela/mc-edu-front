@@ -89,6 +89,11 @@ export default props => {
                   headerRight: () => (
                     <View style={{ flexDirection: "row" }}>
                       <Button
+                        onPress={() => navigation.push("Info Turma")}
+                        type="clear"
+                        icon={<Icon name="info-outline" size={25} color="#3399ff" />}
+                      />
+                      <Button
                         onPress={() => navigation.navigate('Editar Postagem')}
                         type="clear"
                         icon={<Icon name="edit" size={25} color="#E4A11B" />}
