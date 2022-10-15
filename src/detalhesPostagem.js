@@ -23,6 +23,7 @@ export default props => {
             //console.log(detalhes.data)
             setDetalhes(detalhes.data)
             setLoaded(true)
+            await AsyncStorage.setItem("postagem", postagem.id != undefined ? postagem.id.toString() : props.route.params);
         } catch (e) {
             console.log("ERROR_GET_DETALHES_POSTAGEM");
             showError(e)
@@ -37,7 +38,7 @@ export default props => {
     }
 
     deliverPost = async () => {
-        const turma = await AsyncStorage.getItem("turma")
+        const turma = await AsyncStorage.getItem("turma");
         var data = {
             postagem: postagem.id,
             aluno: await AsyncStorage.getItem("id"),

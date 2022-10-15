@@ -14,6 +14,7 @@ import Inscricao from './inscricao';
 import NovaPostagem from './novaPostagem';
 import InfoTurma from './infoTurma';
 import EditaPostagem from './editaPostagem';
+import AtividadesEntregues from './atividadesEntregues';
 import Entrar from './Auth';
 
 const Tab = createBottomTabNavigator();
@@ -89,19 +90,19 @@ export default props => {
                   headerRight: () => (
                     <View style={{ flexDirection: "row" }}>
                       <Button
-                        onPress={() => navigation.push("Info Turma")}
+                        onPress={() => navigation.push("Atividades Entregues")}
                         type="clear"
                         icon={<Icon name="info-outline" size={25} color="#3399ff" />}
                       />
                       <Button
                         onPress={() => navigation.navigate('Editar Postagem')}
                         type="clear"
-                        icon={<Icon name="edit" size={25} color="#E4A11B" />}
+                        icon={<Icon name="edit" size={25} color="#ffcc00" />}
                       />
                       <Button
                         onPress={() => deletePost()}
                         type="clear"
-                        icon={<Icon name="delete" size={25} color="#DC4C64" />}
+                        icon={<Icon name="archive" size={25} color="#e600e6" />}
                       />
                     </View>
 
@@ -119,12 +120,12 @@ export default props => {
                       <Button
                         onPress={() => navigation.navigate('Editar Postagem')}
                         type="clear"
-                        icon={<Icon name="edit" size={25} color="#E4A11B" />}
+                        icon={<Icon name="edit" size={25} color="#ffcc00" />}
                       />
                       <Button
                         onPress={() => deletePost()}
                         type="clear"
-                        icon={<Icon name="delete" size={25} color="#DC4C64" />}
+                        icon={<Icon name="archive" size={25} color="#e600e6" />}
                       />
                     </View>
 
@@ -135,6 +136,7 @@ export default props => {
             <SettingsStack.Screen name="Nova Turma" component={NovaTurma} />
             <SettingsStack.Screen name="Inscrição Turma" component={Inscricao} />
             <SettingsStack.Screen name="Nova Postagem" component={NovaPostagem} />
+            <SettingsStack.Screen name="Atividades Entregues" component={AtividadesEntregues} />
             <SettingsStack.Screen name="Editar Postagem" component={EditaPostagem} />
           </SettingsStack.Navigator>
         )}

@@ -47,6 +47,10 @@ export const deliverPost = data => {
   return httpClient.post("/postagens/entrega", data);
 };
 
+export const getAtividadesEntregues = id => {
+  return httpClient.get(`/postagens/${id}/entregas`)
+};
+
 export const deletePost = id => {
   return httpClient.delete(`/postagens/${id}`);
 };
