@@ -51,7 +51,7 @@ export default props => {
           <ListItem.Subtitle>
             {
               item.dataEntrega != null ?
-                "Entrega: " + item.dataEntrega.substr(0, 10).split("-").reverse().join("/") :
+                "Entrega: " + new Date(item.dataEntrega).toLocaleDateString() :
                 ""
             }
           </ListItem.Subtitle>

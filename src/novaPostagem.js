@@ -88,7 +88,7 @@ export default class novaPostagem extends Component {
                         modal
                         open={this.state.open}
                         date={this.state.date}
-                        // locale={pt - BR}
+                        locale="pt"
                         onConfirm={(date) => {
                             this.setState({ open: false })
                             this.setState({ date: date })
@@ -100,6 +100,7 @@ export default class novaPostagem extends Component {
                         }}
                         mode="date"
                         androidVariant='nativeAndroid' />
+                        <Text>{this.state.setDataEntrega != null ? new Date(this.state.setDataEntrega).toString() : ""}</Text>
                     <Text label style={{ paddingTop: 30 }}>Descrição:</Text>
                     <Input
                         placeholder="Descrição da Postagem"

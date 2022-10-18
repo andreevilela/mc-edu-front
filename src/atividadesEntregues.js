@@ -13,7 +13,7 @@ export default props => {
     }, [])
 
     const AtividadesEntregues = async () => {
-        const postagem = await AsyncStorage.getItem("postagem")
+        const postagem = await AsyncStorage.getItem("postagem");
         //console.log(turma)
         try {
             const entregas = await api.getAtividadesEntregues(postagem).catch((error) => {
@@ -23,7 +23,7 @@ export default props => {
             setEntregas(entregas.data)
             setLoaded(true)
         } catch (e) {
-            console.log("ERROR_GET_INFO_TURMA");
+            console.log("ERROR_GET_ATIVIDADES_ENTREGUES");
             showError(e)
         }
     };

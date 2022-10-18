@@ -71,7 +71,7 @@ export default props => {
             <Text style={{}}>
                 {
                     detalhes.dataEntrega != null ?
-                        "Data de entrega: " + detalhes.dataEntrega.substr(0, 10).split("-").reverse().join("/") :
+                        "Data de entrega: " + new Date(detalhes.dataEntrega).toLocaleDateString() :
                         "Conteúdo"
                 }
             </Text>
