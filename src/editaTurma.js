@@ -66,7 +66,7 @@ export default class editaTurma extends Component {
                 { this.state.setLoaded && this.state.setTurma != null ?
                     <View>
                         <View style={{ padding: 10 }}>
-                            <Text label style={{ padding: 10 }}>Digite o nome da turma a ser criada:</Text>
+                            <Text label style={{ padding: 10 }}>Nome da Turma:</Text>
                             <Input
                                 style={{ fontSize: 16, padding: 10 }}
                                 defaultValue={this.state.setTurma.nome}

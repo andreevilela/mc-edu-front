@@ -15,6 +15,8 @@ import NovaPostagem from './novaPostagem';
 import InfoTurma from './infoTurma';
 import EditaTurma from './editaTurma';
 import EditaPostagem from './editaPostagem';
+import ArquivaTurma from './arquivaTurma';
+import ArquivaPostagem from './arquivaPostagem';
 import AtividadesEntregues from './atividadesEntregues';
 import Entrar from './Auth';
 
@@ -101,7 +103,7 @@ export default props => {
                         icon={<Icon name="edit" size={25} color="#ffcc00" />}
                       />
                       <Button
-                        onPress={() => deletePost()}
+                        onPress={() => navigation.push('Arquiva Postagem')}
                         type="clear"
                         icon={<Icon name="archive" size={25} color="#e600e6" />}
                       />
@@ -124,7 +126,7 @@ export default props => {
                         icon={<Icon name="edit" size={25} color="#ffcc00" />}
                       />
                       <Button
-                        onPress={() => deletePost()}
+                        onPress={() => navigation.push('Arquiva Turma')}
                         type="clear"
                         icon={<Icon name="archive" size={25} color="#e600e6" />}
                       />
@@ -140,6 +142,8 @@ export default props => {
             <SettingsStack.Screen name="Atividades Entregues" component={AtividadesEntregues} />
             <SettingsStack.Screen name="Editar Turma" component={EditaTurma} />
             <SettingsStack.Screen name="Editar Postagem" component={EditaPostagem} />
+            <SettingsStack.Screen name="Arquiva Turma" component={ArquivaTurma} />
+            <SettingsStack.Screen name="Arquiva Postagem" component={ArquivaPostagem} />
           </SettingsStack.Navigator>
         )}
 
