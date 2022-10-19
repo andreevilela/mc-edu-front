@@ -51,10 +51,18 @@ export const getAtividadesEntregues = id => {
   return httpClient.get(`/postagens/${id}/entregas`)
 };
 
+export const editTurma = (id, data) => {
+  return httpClient.put(`/turmas/${id}`, data);
+};
+
+export const archiveTurma = id => {
+  return httpClient.put(`/turmas/${id}/arquiva`);
+};
+
 export const editPostagem = (id, data) => {
   return httpClient.put(`/postagens/${id}`, data);
 };
 
 export const archivePostagem = id => {
-  return httpClient.put(`/postagens/${id}`);
+  return httpClient.put(`/postagens/${id}/arquiva`);
 };

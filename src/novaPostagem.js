@@ -87,7 +87,7 @@ export default class novaPostagem extends Component {
                         }}
                         mode="date"
                         androidVariant='nativeAndroid' />
-                        <Text>{this.state.setDataEntrega != null ? new Date(this.state.setDataEntrega).toString() : ""}</Text>
+                        <Text>{this.state.setDataEntrega != null ? new Date(this.state.setDataEntrega).toLocaleDateString() : ""}</Text>
                     <Text label style={{ paddingTop: 30 }}>Descrição:</Text>
                     <Input
                         placeholder="Descrição da Postagem"

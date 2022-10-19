@@ -13,6 +13,7 @@ import NovaTurma from './novaTurma';
 import Inscricao from './inscricao';
 import NovaPostagem from './novaPostagem';
 import InfoTurma from './infoTurma';
+import EditaTurma from './editaTurma';
 import EditaPostagem from './editaPostagem';
 import AtividadesEntregues from './atividadesEntregues';
 import Entrar from './Auth';
@@ -118,7 +119,7 @@ export default props => {
                   headerRight: () => (
                     <View style={{ flexDirection: "row" }}>
                       <Button
-                        onPress={() => navigation.push('Editar Postagem')}
+                        onPress={() => navigation.push('Editar Turma')}
                         type="clear"
                         icon={<Icon name="edit" size={25} color="#ffcc00" />}
                       />
@@ -137,6 +138,7 @@ export default props => {
             <SettingsStack.Screen name="Inscrição Turma" component={Inscricao} />
             <SettingsStack.Screen name="Nova Postagem" component={NovaPostagem} />
             <SettingsStack.Screen name="Atividades Entregues" component={AtividadesEntregues} />
+            <SettingsStack.Screen name="Editar Turma" component={EditaTurma} />
             <SettingsStack.Screen name="Editar Postagem" component={EditaPostagem} />
           </SettingsStack.Navigator>
         )}

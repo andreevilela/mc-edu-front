@@ -101,21 +101,20 @@ export default class editaPostagem extends Component {
         return result;
     }
 
-    // Realiza uma nova postagem na turma passando o ID da turma que está aberta e o ID do usuário(professor) logado
     editPostagem = async () => {
         var data = {
-            titulo: this.state.setTituloPostagem, // Pega o texto que está no input de Título
-            usuario: await AsyncStorage.getItem("id"), // Pega o ID do usuário (professor) que está entrando na turma
-            turma: await AsyncStorage.getItem("turma"), // Pega o ID da turma que está aberta
-            dataEntrega: this.state.setDataEntrega, // Pega o texto que está no input de Data de Entrega
-            descricao: this.state.setDescPostagem, // Pega o texto que está no input de Descrição
+            titulo: this.state.setTituloPostagem,
+            usuario: await AsyncStorage.getItem("id"),
+            turma: await AsyncStorage.getItem("turma"),
+            dataEntrega: this.state.setDataEntrega,
+            descricao: this.state.setDescPostagem,
 
             arquivos: await this.getFiles()
         }
         const postagem = await AsyncStorage.getItem("postagem");
         try {
             console.log("START_EDIT_POST");
-            console.log("CONSUMING_API_EDIT_POST"); // Está passando todos os dados
+            console.log("CONSUMING_API_EDIT_POST");
             console.log("DATA -> " + JSON.stringify(data));
             const createPost = await api.editPostagem(postagem, data).catch((error) => {
                 console.log({ ...error })
@@ -123,7 +122,7 @@ export default class editaPostagem extends Component {
             console.log("RETURN_API_EDIT_POST -> " + JSON.stringify(data));
             await AsyncStorage.removeItem("arquivos");
             Alert.alert("Alerta!","Alteração efetuada com sucesso.")
-            this.props.navigation.push('Mural', data.turma); // Push navega para o estado atualizado da página
+            this.props.navigation.push('Mural', data.turma);
             console.log("END_EDIT_POST");
         } catch (e) {
             console.log("ERROR_EDIT_POST");
@@ -180,7 +179,7 @@ export default class editaPostagem extends Component {
                                 onChangeText={value => {
                                     this.setState({ setDescPostagem: value });
                                 }}
-                                multiline={true} // Para preencher o texto verticalmente, no Android fica apenas no meio
+                                multiline={true}
                                 scrollEnabled={true}
                             />
                             <Text label style={{ paddingTop: 15, paddingBottom: 15 }}>Arquivos:</Text>
@@ -207,7 +206,7 @@ export default class editaPostagem extends Component {
                                 justifyContent: 'center',
                                 borderRadius: 10,
                             }}
-                                title="Salvar"
+                                title="Alterar"
                                 onPress={() => this.editPostagem()}
                             />
                         </View>

@@ -18,6 +18,7 @@ export default class novaTurma extends Component {
         try {
             console.log("START_CREATE_TURMA");
             console.log("CONSUMING_API_CREATE_TURMA"); // Está passando nome e ID do usuário(professor) que cria a turma
+            console.log("DATA -> " + JSON.stringify(data));
             const createTurma = await api.createNewTurma(data).catch((error) => {
                 console.log({ ...error })
             });
