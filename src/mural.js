@@ -33,7 +33,7 @@ export default props => {
 
   function getPostagensItem({ item }) {
     return (
-      <ListItem bottomDivider onPress={() => props.navigation.navigate('Detalhes', item)}>
+      <ListItem bottomDivider onPress={() => props.navigation.push('Detalhes', item)}>
         <Avatar source=
           {
             item.dataEntrega != null ?

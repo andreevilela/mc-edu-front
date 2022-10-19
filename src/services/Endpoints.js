@@ -7,7 +7,7 @@ const httpClient = axios.create({
   }
 })
 
-export const createUser = data => {
+export const createUsuario = data => {
   return httpClient.post("/usuarios", data);
 };
 
@@ -35,7 +35,7 @@ export const joinTurma = data => {
   return httpClient.post("/turmas/inscricao", data);
 };
 
-export const createPost = data => {
+export const createPostagem = data => {
   return httpClient.post("/postagens", data);
 };
 
@@ -43,7 +43,7 @@ export const getInfoTurma = id => {
   return httpClient.get(`/turmas/${id}`)
 };
 
-export const deliverPost = data => {
+export const deliverPostagem = data => {
   return httpClient.post("/postagens/entrega", data);
 };
 
@@ -51,10 +51,10 @@ export const getAtividadesEntregues = id => {
   return httpClient.get(`/postagens/${id}/entregas`)
 };
 
-export const deletePost = id => {
-  return httpClient.delete(`/postagens/${id}`);
+export const editPostagem = (id, data) => {
+  return httpClient.put(`/postagens/${id}`, data);
 };
 
-export const editPost = data => {
-  return httpClient.put("/postagens", data);
+export const archivePostagem = id => {
+  return httpClient.put(`/postagens/${id}`);
 };

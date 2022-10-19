@@ -31,13 +31,13 @@ export default props => {
                 showError(e)
             }
         } else {
-            props.navigation.navigate("Entrar");
+            props.navigation.push("Entrar");
         }
     };
 
     function getTurmaItem({ item }) {
         return (
-            <ListItem bottomDivider onPress={() => props.navigation.navigate("Mural", item)}>
+            <ListItem bottomDivider onPress={() => props.navigation.push("Mural", item)}>
                 <Avatar rounded source={{ uri: item.professores.map(it => it.foto).toString() }} size={"medium"} />
                 <ListItem.Content>
                     <ListItem.Title>{item.nome}</ListItem.Title>

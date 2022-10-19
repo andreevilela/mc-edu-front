@@ -85,16 +85,16 @@ export default function Document() {
         setUrl([]);
         setUrl(link);
         await AsyncStorage.setItem("arquivos", JSON.stringify(link));
-        const x = await AsyncStorage.getItem("arquivos");
-        console.log("REMOVE4" + JSON.parse(x))
+        //const x = await AsyncStorage.getItem("arquivos");
+        //console.log("REMOVE4" + JSON.parse(x))
     }
 
     const handleError = (err: unknown) => {
         if (DocumentPicker.isCancel(err)) {
-            console.warn('cancelled')
+            console.log('cancelled')
             // User cancelled the picker, exit any dialogs or menus and move on
         } else if (isInProgress(err)) {
-            console.warn('multiple pickers were opened, only the last will be considered')
+            console.log('multiple pickers were opened, only the last will be considered')
         } else {
             throw err
         }

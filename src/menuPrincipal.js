@@ -95,7 +95,7 @@ export default props => {
                         icon={<Icon name="info-outline" size={25} color="#3399ff" />}
                       />
                       <Button
-                        onPress={() => navigation.navigate('Editar Postagem')}
+                        onPress={() => navigation.push('Editar Postagem')}
                         type="clear"
                         icon={<Icon name="edit" size={25} color="#ffcc00" />}
                       />
@@ -118,7 +118,7 @@ export default props => {
                   headerRight: () => (
                     <View style={{ flexDirection: "row" }}>
                       <Button
-                        onPress={() => navigation.navigate('Editar Postagem')}
+                        onPress={() => navigation.push('Editar Postagem')}
                         type="clear"
                         icon={<Icon name="edit" size={25} color="#ffcc00" />}
                       />

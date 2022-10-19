@@ -69,11 +69,11 @@ export default class Auth extends Component {
         try {
             console.log("START_SIGN_UP");
             console.log("CONSUMING_API_CREATE_USER");
-            const signUp = await api.createUser(data).catch((error) => {
+            const signUp = await api.createUsuario(data).catch((error) => {
                 console.log({ ...error })
             });
             console.log("RETURN_API_POST -> " + signUp.data.id);
-            this.props.navigation.navigate('Turmas');
+            this.props.navigation.push('Turmas');
             console.log("END_SIGN_UP");
         } catch (e) {
             console.log("ERROR_SIGN_UP");

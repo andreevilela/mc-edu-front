@@ -31,7 +31,7 @@ export default props => {
     };
 
     function getName(uri) {
-        console.log(uri)
+        //console.log("getName -> " + uri)
         const begin = uri.indexOf("%2F") + 3;
         const end = uri.lastIndexOf("?") - 28;
         return uri.substring(begin, end);
@@ -49,11 +49,11 @@ export default props => {
             console.log("START_DELIVER_POST");
             console.log("CONSUMING_API_DELIVER_POST");
             console.log("DATA -> " + JSON.stringify(data));
-            const deliverPost = await api.deliverPost(data).catch((error) => {
+            const deliverPost = await api.deliverPostagem(data).catch((error) => {
                 console.log({ ...error })
             });
             console.log("RETURN_API_DELIVER_POST -> " + JSON.stringify(data));
-            //await AsyncStorage.removeItem("arquivos");
+            await AsyncStorage.removeItem("arquivos");
             Alert.alert("Alerta!","Entrega efetuada com sucesso.")
             props.navigation.push('Mural', turma);
             console.log("END_DELIVER_POST");

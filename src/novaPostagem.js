@@ -37,11 +37,11 @@ export default class novaPostagem extends Component {
             console.log("START_CREATE_POST");
             console.log("CONSUMING_API_CREATE_POST"); // Está passando todos os dados
             console.log("DATA -> " + JSON.stringify(data));
-            const createPost = await api.createPost(data).catch((error) => {
+            const createPost = await api.createPostagem(data).catch((error) => {
                 console.log({ ...error })
             });
             console.log("RETURN_API_POST -> " + JSON.stringify(data));
-            //await AsyncStorage.removeItem("arquivos");
+            await AsyncStorage.removeItem("arquivos");
             this.props.navigation.push('Mural', data.turma); // Push navega para o estado atualizado da página
             console.log("END_CREATE_POST");
         } catch (e) {
@@ -49,19 +49,6 @@ export default class novaPostagem extends Component {
             showError(e)
         }
     };
-
-    converteLista = async () => {
-        var jsonValue = JSON.parse(await AsyncStorage.getItem("arquivos"))
-        //console.log("JSON ->" + jsonValue.map(it=> it.url))
-        //var x = jsonValue.map(it=> it.url)
-        return jsonValue
-        /*if (jsonValue != null) {
-            const arquivos = JSON.parse(jsonValue).map(it => it.value)
-            console.log("Arquivos -> "+ arquivos)
-            return arquivos
-        }
-        else return null;*/
-    }
 
     render() {
         return (
